@@ -1,0 +1,37 @@
+---
+const navItems = [
+  {
+    id: 1,
+    name: "INICIO",
+    href: "#",
+  },
+  {
+    id: 2,
+    name: "NOSOTROS",
+    href: "#",
+  },
+  {
+    id: 3,
+    name: "PRODUCTOS",
+    href: "#",
+  },
+  {
+    id: 4,
+    name: "TALLERES",
+    href: "#",
+  },
+];
+---
+
+<div class="fixed h-22.5">
+  <div class="flex pt-5 pb-2.5 text-malt">
+    <a href="#" class="text-5xl">i.lapso</a>
+    <nav class="flex list-none">
+      {
+        navItems.map((item) => (
+          <li class="p-5"><a href={item.href}>{item.name}</a></li>
+        ))
+      }
+    </nav>
+  </div>
+</div>

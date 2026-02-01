@@ -1,0 +1,46 @@
+---
+const content = [
+  {
+    id: 1,
+    title: "KNITTED\nCLOTHING",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+  {
+    id: 2,
+    title: "JEWELLERY",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+  {
+    id: 3,
+    title: "ORIGINAL\nPAINTINGS",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+  {
+    id: 4,
+    title: "CERAMICS",
+    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  },
+];
+---
+
+<section class="flex px-18">
+  <div class="grid grid-cols-4 gap-x-4 relative">
+    {
+      content.map((item) => (
+        <div key={item.id} class="col-span-1 relative">
+          <div class="relative">
+            <img
+              src="../../src/assets/images/carousel-1.webp"
+              alt=""
+              class="absolute"
+            />
+            <div class="flex flex-col justify-end w-full h-full p-6 relative inset-0">
+              <h2>{item.title}</h2>
+              <p>{item.desc}</p>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

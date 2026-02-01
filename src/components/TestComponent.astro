@@ -1,0 +1,181 @@
+<!-- <div class="carousel">
+  <div class="group">
+    <div class="card">1</div>
+    <div class="card">2</div>
+    <div class="card">3</div>
+    <div class="card">4</div>
+    <div class="card">5</div>
+    <div class="card">6</div>
+  </div>
+  <div aria-hidden="true" class="group">
+    <div class="card">1</div>
+    <div class="card">2</div>
+    <div class="card">3</div>
+    <div class="card">4</div>
+    <div class="card">5</div>
+    <div class="card">6</div>
+  </div>
+</div>
+
+<style>
+  .carousel {
+    margin: 100px auto;
+    width: 90%;
+    border: 5px solid red;
+    display: flex;
+    overflow-x: auto;
+    gap: 1em;
+  }
+  .carousel::-webkit-scrollbar {
+    display: none;
+  }
+  .carousel::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  .carousel::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
+  .carousel::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+  .group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    animation: spin 5s infinite linear;
+    padding: 1em;
+  }
+  .card {
+    flex: 0 0 5em;
+    height: 5em;
+    padding: 1em;
+    background: cornflowerblue;
+    font-size: 3rem;
+    border-radius: 0.2em;
+    text-align: center;
+    align-content: center;
+  }
+
+  @keyframes spin {
+    from {
+      translate: 0;
+    }
+    to {
+      translate: -100%;
+    }
+  }
+</style> -->
+<div>
+  <div class="bg-red-600 py-4 px-4">
+    <ul class="flex">
+      <li class="bg-brilliance w-30 h-30"></li>
+      <li class="bg-mountain-peak w-30 h-30"></li>
+      <li class="bg-malt w-30 h-30"></li>
+      <li class="bg-creole w-30 h-30"></li>
+      <li class="bg-dark-orchestra w-30 h-30"></li>
+      <!-- <li class="bg-brilliance"></li> -->
+    </ul>
+  </div>
+  <div class="carousel basic">
+    <div class="group">
+      <!-- <div class="card">A</div> -->
+      <div class="card">
+        <picture>
+          <img src="../../src/assets/images/carousel-1.webp" alt="" />
+        </picture>
+      </div>
+      <div class="card">
+        <picture>
+          <img src="../../src/assets/images/carousel-2.webp" alt="" />
+        </picture>
+      </div>
+      <div class="card">
+        <picture>
+          <img src="../../src/assets/images/carousel-3.webp" alt="" />
+        </picture>
+      </div>
+      <div class="card">
+        <picture>
+          <img src="../../src/assets/images/carousel-4.webp" alt="" />
+        </picture>
+      </div>
+    </div>
+    <div aria-hidden class="group">
+      <div class="card">
+        <picture>
+          <img src="../../src/assets/images/carousel-1.webp" alt="" />
+        </picture>
+      </div>
+      <div class="card">
+        <picture>
+          <img src="../../src/assets/images/carousel-2.webp" alt="" />
+        </picture>
+      </div>
+      <div class="card">
+        <picture>
+          <img src="../../src/assets/images/carousel-3.webp" alt="" />
+        </picture>
+      </div>
+      <div class="card">
+        <picture>
+          <img src="../../src/assets/images/carousel-4.webp" alt="" />
+        </picture>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .carousel {
+    margin: 0 auto;
+    padding: 20px 0;
+    /*max-width: 700px;*/
+    overflow: hidden;
+    display: flex;
+    > * {
+      flex: 0 0 100%;
+    }
+  }
+  .group {
+    display: flex;
+    gap: 20px;
+    padding-right: 20px;
+    will-change: transform;
+    animation: spin 25s linear infinite;
+  }
+
+  .card {
+    /*width: 100%;*/
+    width: 400px;
+    color: white;
+    /*border-radius: 24px;*/
+    /*box-shadow: rgba(0, 0, 0, 10%) 5px 5px 20px 0;*/
+    padding: 20px;
+    font-size: xx-large;
+    justify-content: center;
+    align-items: center;
+    /*min-height: 200px;*/
+
+    /*&:nth-child(1) {
+      background: #7958ff;
+    }
+
+    &:nth-child(2) {
+      background: #5d34f2;
+    }
+
+    &:nth-child(3) {
+      background: #4300da;
+    }*/
+  }
+
+  @keyframes spin {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+</style>
