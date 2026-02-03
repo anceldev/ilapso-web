@@ -1,11 +1,169 @@
 @import "tailwindcss";
+@import "@fontsource-variable/inconsolata";
+
+/* Evita que el navegador simule pesos; usa los @font-face reales */
+@layer base {
+  body {
+    font-synthesis: none;
+  }
+}
+
+/* Creato Display – fuentes locales */
+@font-face {
+  font-family: "Creato Display";
+  src: url("/fonts/CreatoDisplay-Thin.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Creato Display";
+  src: url("/fonts/CreatoDisplay-ThinItalic.otf") format("opentype");
+  font-weight: 100;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Creato Display";
+  src: url("/fonts/CreatoDisplay-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Creato Display";
+  src: url("/fonts/CreatoDisplay-LightItalic.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Creato Display";
+  src: url("/fonts/CreatoDisplay-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Creato Display";
+  src: url("/fonts/CreatoDisplay-RegularItalic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Creato Display";
+  src: url("/fonts/CreatoDisplay-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Creato Display";
+  src: url("/fonts/CreatoDisplay-MediumItalic.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Creato Display";
+  src: url("/fonts/CreatoDisplay-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Creato Display";
+  src: url("/fonts/CreatoDisplay-BoldItalic.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Creato Display";
+  src: url("/fonts/CreatoDisplay-ExtraBold.otf") format("opentype");
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Creato Display";
+  src: url("/fonts/CreatoDisplay-ExtraBoldItalic.otf") format("opentype");
+  font-weight: 800;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Creato Display";
+  src: url("/fonts/CreatoDisplay-Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Creato Display";
+  src: url("/fonts/CreatoDisplay-BlackItalic.otf") format("opentype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+/* Perpetua – fuentes locales */
+@font-face {
+  font-family: "Perpetua";
+  src: url("/fonts/Perpetua-Regular.woff2") format("woff2"), url("/fonts/Perpetua-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Perpetua";
+  src: url("/fonts/Perpetua-Italic.woff2") format("woff2"), url("/fonts/Perpetua-Italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Perpetua";
+  src: url("/fonts/Perpetua-Bold.woff2") format("woff2"), url("/fonts/Perpetua-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Perpetua";
+  src: url("/fonts/Perpetua-Bold-Italic.woff2") format("woff2"), url("/fonts/Perpetua-Bold-Italic.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* Perpetua Titling – fuentes locales */
+@font-face {
+  font-family: "Perpetua Titling MT";
+  src: url("/fonts/Perpetua-Titling-Light.woff2") format("woff2"), url("/fonts/Perpetua-Titling-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Perpetua Titling MT";
+  src: url("/fonts/Perpetua-Titling-Regular.woff2") format("woff2"), url("/fonts/Perpetua-Titling-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Perpetua Titling MT";
+  src: url("/fonts/Perpetua-Titling-Bold.woff2") format("woff2"), url("/fonts/Perpetua-Titling-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
 
 @theme {
+  --font-creato: "Creato Display", ui-sans-serif, system-ui, sans-serif;
+  --font-perpetua: "Perpetua", "Perpetua Titling MT", Georgia, serif;
+  --font-perpetua-titling: "Perpetua Titling MT", Perpetua, Georgia, serif;
+  --font-inconsolata: "Inconsolata Variable", ui-monospace, "Courier New", monospace;
+
   --color-brilliance: hsl(0, 0%, 99.61%);
   --color-malt: hsl(32, 30%, 80.39%);
   --color-dark-orchestra: hsl(42.86, 22.58%, 12.16%);
   --color-creole: hsl(38.82, 17.53%, 19.02%);
   --color-mountain-peak: hsl(44.21, 27.54%, 86.47%);
+
+  --color-camel: hsl(32.53, 39.34%, 58.63%);
+  --color-bCoffe: hsl(16.22, 35.92%, 40.39%);
+
+  --text-h1: 5rem;
+  --text-h2: 4.2rem;
+  --text-h3: 3.15rem;
+  --text-h4: 2.36rem;
+  --text-h5: 1.77rem;
+  --text-h6: 1.33rem;
+  --text-paragraph-big: 1.2rem;
+
+
   @keyframes carousel {
     from {
       transform: translateX(0);

@@ -1,5 +1,5 @@
 ---
-const navItems = [
+export const navItems = [
   {
     id: 1,
     name: "INICIO",
@@ -23,13 +23,13 @@ const navItems = [
 ];
 ---
 
-<div class="fixed h-22.5">
-  <div class="flex pt-5 pb-2.5 text-malt">
-    <a href="#" class="text-5xl">i.lapso</a>
+<div class="fixed h-22.5 z-50">
+  <div class="flex pt-5 pb-2.5 text-camel">
+    <a href="#" class="text-5xl font-perpetua">i.lapso</a>
     <nav class="flex list-none">
       {
         navItems.map((item) => (
-          <li class="p-5"><a href={item.href}>{item.name}</a></li>
+          <li class="p-5 font-creato text-base"><a href={item.href}>{item.name}</a></li>
         ))
       }
     </nav>

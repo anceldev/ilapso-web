@@ -1,0 +1,80 @@
+---
+export const menu = [
+  {
+    id: 1,
+    name: "INICIO",
+    href: "/",
+  },
+  {
+    id: 2,
+    name: "NOSOTROS",
+    href: "/#nosotros",
+  },
+  {
+    id: 3,
+    name: "PRODUCTOS",
+    href: "#",
+  },
+  // {
+  //   id: 4,
+  //   name: "TALLERES",
+  //   href: "#",
+  // },
+];
+export const talleres = [
+  {
+    id: 1,
+    name: "TALLER 1",
+    href: "#",
+  }
+]
+export const redesSociales = [
+  {
+    id: 1,
+    name: "INSTAGRAM",
+    href: "#",
+  }
+]
+---
+<footer>
+  <div class="max-w-[1500px] mx-[72px]">
+    <div class="flex">
+      <div class="flex gap-4 w-2/3">
+        <div class="w-1/3">
+          <h3 class="mb-1.5">i.lapso</h3>
+          <ul>
+            {menu.map((item) => (
+              <a href={item.href}>
+                <li class="font-creato text-base" key={item.id}>{item.name}</li>
+              </a>
+            ))}
+          </ul>
+        </div>
+        <div class="w-1/3">
+          <h3 class="mb-1.5">TALLERES</h3>
+          <ul>
+            {talleres.map((item) => (
+              <li key={item.id}>{item.name}</li>
+            ))}
+          </ul>
+        </div>
+        <div class="w-1/3">
+          <h3 class="mb-1.5">REDES SOCIALES</h3>
+          <ul class="flex gap-2">
+            {redesSociales.map((item) => (
+              <a href={item.href}>
+                <li class="font-creato text-base" key={item.id}>{item.name}</li>
+              </a>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h1 class="font-perpetua text-[180px]">i.lapso</h1>
+    </div>
+      <div>
+        <p class="font-creato text-base text-center">©ANDEV DESARROLLOS. TODOS LOS DERECHOS RESERVADOS.</p>
+    </div>
+  </div>
+</footer>

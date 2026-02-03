@@ -1,0 +1,163 @@
+---
+// Supports weights 200-900
+const replicas = [
+  {
+    id: 1,
+    quantity: "1 réplica",
+    description: "1 pie o mano, con marco artesanal grabado",
+    price: [
+      {
+        id: 1,
+        price: "90€",
+        details: "De 0 a 3 meses",
+      },
+      {
+        id: 2,
+        price: "110€",
+        details: "De 4 a 24 meses",
+      }
+    ],
+    image: "../../src/assets/images/hand-1.png",
+  },
+  {
+    id: 2,
+    quantity: "2 réplicas",
+    description: "2 pies o manos, con marco artesanal grabado",
+    price: [
+      {
+        id: 1,
+        price: "140€",
+        details: "De 0 a 3 meses",
+      },
+      {
+        id: 2,
+        price: "160€",
+        details: "De 4 a 24 meses",
+      }
+    ],
+    image: "../../src/assets/images/hand-2.jpg",
+  },
+  {
+    id: 3,
+    quantity: "4 réplicas",
+    description: "2 pies y 2 manos, con marco artesanal grabado",
+    price: [
+      {
+        id: 1,
+        price: "240€",
+        details: "De 0 a 3 meses",
+      },
+      {
+        id: 2,
+        price: "300€",
+        details: "De 4 a 24 meses",
+      }
+    ],
+    image: "../../src/assets/images/hand-2.jpg",
+  },
+  {
+    id: 4,
+    quantity: "1 + 1 réplicas",
+    description: "1 pie de bebé y 1 mano de adulto, con peana artesanal grabado",
+    price: [
+      {
+        id: 1,
+        price: "190€",
+        details: "",
+      },
+    ],
+    image: "../../src/assets/images/hand-2.jpg",
+  },
+  {
+    id: 5,
+    quantity: "2 + 2 réplicas",
+    description: "2 pies o manos de bebé y 2 pies o manos de adulto, con peana artesanal grabado",
+    price: [
+      {
+        id: 1,
+        price: "230€",
+        details: "",
+      },
+    ],
+    image: "../../src/assets/images/hand-2.jpg",
+  },
+  {
+    id: 6,
+    quantity: "Réplicas",
+    description: "Réplicas de manos de adultos, con peana artesanal grabado",
+    price: [
+      {
+        id: 1,
+        price: "165€",
+        details: "2 manos",
+      },
+      {
+        id: 2,
+        price: "220€",
+        details: "3 manos",
+      },
+      {
+        id: 3,
+        price: "290€",
+        details: "4 manos",
+      },
+    ],
+    image: "../../src/assets/images/hand-2.jpg",
+  },
+  {
+    id: 7,
+    quantity: "Réplica",
+    description: "Réplica de barriga, con peana artesanal grabado",
+    price: [
+      {
+        id: 1,
+        price: "250",
+        details: "Sólo barriga",
+      },
+      {
+        id: 2,
+        price: "275",
+        details: "Barriga y 2 manos",
+      },
+      {
+        id: 3,
+        price: "300",
+        details: "Barriga y 4 manos",
+      },
+    ],
+    image: "../../src/assets/images/hand-2.jpg",
+  },
+]
+---
+<section class="flex flex-col items-center justify-center max-w-[1500px] mx-auto column-gap-4 px-[72px] relative">
+  <h1 class="text-h1 font-extralight">RÉPLICAS</h1>
+  <!-- <p class="w-[70%] text-center">Hay gestos que las palabras no alcanzan a describir: el entrelazado de una pareja, la fragilidad de los dedos de un recién nacido o la fuerza de unas manos que han trabajado toda una vida. A través de la técnica del vaciado en yeso, transformo un instante efímero en una obra táctil y eterna. Cada réplica es un mapa de identidad que conserva cada línea, poro y detalle, permitiéndote tocar tus recuerdos para siempre.</p> -->
+   <h6 class="text-h6 font-medium">El arte de detener el tiempo</h6>
+  <p class="w-[70%] text-center">Capturo la esencia de un gesto a través de réplicas hiperrealistas en yeso. Cada pieza es un molde único que preserva cada detalle, línea y emoción de tus manos, convirtiendo un instante efímero en una escultura eterna</p>
+  <div class="grid grid-cols-3 w-full gap-x-4 gap-y-4 max-h-[400px] relative">
+    {
+      replicas.map((replica) => (
+        // <div key={replica.id}>
+        //   <img src={replica.image} alt={replica.description} />
+        // </div>
+        <div key={replica.id} class="col-span-1 min-h-[400px] relative overflow-hidden">
+          <a href="#" class="group flex items-start size-full overflow-hidden">
+            <img src={replica.image} alt={replica.description} class="absolute h-full w-full object-cover hover:scale-x-105 hover:scale-y-105 transition-all duration-400 transform-3d"/>
+            <div class="pointer-events-none absolute inset-0 z-3 flex size-full flex-col items-start justify-end gap-2 p-6" style="background-color: rgba(17, 14, 9, 0.4); background-image: linear-gradient(180deg, #fff0, var(--color--bg-dark3, var(--color-dark-orchestra)))">
+              {
+                replica.price.map((price) => (
+                  <div key={price.id} class="hidden group-hover:flex transition-all duration-450">
+                    <p class="font-inconsolata text-white text-paragraph-big">{price.price}</p>
+                    <p class="font-inconsolata text-white text-paragraph-big">{price.details}</p>
+                  </div>
+                ))
+              }
+              <h4 class="text-h4 text-white font-creato leading-tight transition-transform duration-450 group-hover:-translate-y-2">{replica.quantity}</h4>
+              <p class="hidden font-creato text-camel group-hover:block transition-all duration-450">{replica.description}</p>
+            </div>
+          </a>
+        </div>
+      ))
+    }
+  </div>
+</section>
