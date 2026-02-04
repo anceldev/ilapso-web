@@ -13,13 +13,13 @@ export const menu = [
   {
     id: 3,
     name: "PRODUCTOS",
-    href: "#",
+    href: "#products",
   },
-  // {
-  //   id: 4,
-  //   name: "TALLERES",
-  //   href: "#",
-  // },
+  {
+    id: 4,
+    name: "POLÍTICA DE COOKIES",
+    href: "/politica-cookies",
+  }
 ];
 export const talleres = [
   {
@@ -32,38 +32,40 @@ export const redesSociales = [
   {
     id: 1,
     name: "INSTAGRAM",
-    href: "#",
+    href: "https://www.instagram.com/i.lapso/",
   }
 ]
 ---
-<footer>
+<footer class="pt-18 pb-6 border-t border-malt">
   <div class="max-w-[1500px] mx-[72px]">
     <div class="flex">
       <div class="flex gap-4 w-2/3">
         <div class="w-1/3">
-          <h3 class="mb-1.5">i.lapso</h3>
+          <h3 class="mb-1.5 font-medium text-bCoffe">I.LAPSO</h3>
           <ul>
             {menu.map((item) => (
-              <a href={item.href}>
-                <li class="font-creato text-base" key={item.id}>{item.name}</li>
+              <a href={item.href} class="hover:text-camel transition-all duration-400">
+                <li class="font-creato text-base text-camel" key={item.id}>{item.name}</li>
               </a>
             ))}
           </ul>
         </div>
         <div class="w-1/3">
-          <h3 class="mb-1.5">TALLERES</h3>
+          <h3 class="mb-1.5 text-bCoffe font-medium">TALLERES</h3>
           <ul>
             {talleres.map((item) => (
-              <li key={item.id}>{item.name}</li>
+              <a href={item.href} class="hover:text-camel transition-all duration-400">
+                <li class="font-creato text-base text-camel" key={item.id}>{item.name}</li>
+              </a>
             ))}
           </ul>
         </div>
         <div class="w-1/3">
-          <h3 class="mb-1.5">REDES SOCIALES</h3>
+          <h3 class="mb-1.5 text-bCoffe font-medium">REDES SOCIALES</h3>
           <ul class="flex gap-2">
             {redesSociales.map((item) => (
-              <a href={item.href}>
-                <li class="font-creato text-base" key={item.id}>{item.name}</li>
+              <a href={item.href} target="_blank">
+                <li class="font-creato text-base text-camel" key={item.id}>{item.name}</li>
               </a>
             ))}
           </ul>
@@ -71,10 +73,11 @@ export const redesSociales = [
       </div>
     </div>
     <div>
-      <h1 class="font-perpetua text-[180px]">i.lapso</h1>
+      <h1 class="font-perpetua text-[180px] text-camel">i.lapso</h1>
+      <!-- <h1 class="font-perpetua text-[180px] text-camel">I.LAPSO</h1> -->
     </div>
       <div>
-        <p class="font-creato text-base text-center">©ANDEV DESARROLLOS. TODOS LOS DERECHOS RESERVADOS.</p>
+        <p class="font-creato text-sm text-left text-bCoffe"><b>©ANDEV DESARROLLOS.</b> Todos los derechos reservados.</p>
     </div>
   </div>
 </footer>

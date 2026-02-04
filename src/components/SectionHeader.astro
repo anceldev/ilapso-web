@@ -1,0 +1,9 @@
+---
+const { content } = Astro.props;
+---
+
+<section class="flex flex-col items-center justify-center max-w-[1500px] mx-auto px-20 pt-28  pb-28 gap-y-12">
+  <h1 class="text-h2 font-extralight text-camel leading-[1.2] text-center">{content.title}</h1>
+  <h6 class="text-base text-camel font-bold text-center">{content.subtitle}</h6>
+  <p class="text-base text-bCoffe text-center w-[70%]">{content.description}</p>
+</section>

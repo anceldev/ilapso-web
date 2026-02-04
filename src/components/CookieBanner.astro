@@ -1,0 +1,83 @@
+---
+// Componente de banner de cookies conforme a la LSSI-CE (Ley 34/2002)
+---
+
+<div id="cookie-banner" class="cookie-banner hidden fixed bottom-0 left-0 right-0 z-50 bg-bgWhite border-t border-malt shadow-lg">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex-1">
+      <p class="text-sm text-creole font-creato">
+        Utilizamos únicamente cookies técnicas necesarias para el correcto funcionamiento del sitio web. 
+        <a href="/politica-cookies" class="text-camel underline hover:text-bCoffe transition-colors">Más información</a>
+      </p>
+    </div>
+    <div class="flex gap-3 shrink-0">
+      <button
+        id="reject-cookies"
+        class="px-4 py-2 text-sm font-creato text-creole bg-malt hover:bg-mountain-peak transition-colors rounded"
+      >
+        Rechazar
+      </button>
+      <button
+        id="accept-cookies"
+        class="px-4 py-2 text-sm font-creato text-white bg-camel hover:bg-bCoffe transition-colors rounded"
+      >
+        Aceptar
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const COOKIE_CONSENT_KEY = 'cookie-consent';
+    const banner = document.getElementById('cookie-banner');
+    
+    if (!banner) return;
+
+    // Verificar si ya hay consentimiento guardado
+    const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
+    
+    if (!consent && banner) {
+      // Mostrar el banner si no hay consentimiento previo
+      banner.classList.remove('hidden');
+    }
+
+    // Función para guardar el consentimiento
+    function saveConsent(accepted: boolean) {
+      localStorage.setItem(COOKIE_CONSENT_KEY, accepted ? 'accepted' : 'rejected');
+      if (banner) {
+        banner.classList.add('hidden');
+      }
+      
+      // Solo se guarda la preferencia del usuario
+      // No se cargan cookies de terceros ni scripts de analytics
+    }
+
+    // Event listeners para los botones
+    const acceptBtn = document.getElementById('accept-cookies');
+    const rejectBtn = document.getElementById('reject-cookies');
+
+    if (acceptBtn) {
+      acceptBtn.addEventListener('click', () => saveConsent(true));
+    }
+
+    if (rejectBtn) {
+      rejectBtn.addEventListener('click', () => saveConsent(false));
+    }
+  })();
+</script>
+
+<style>
+  .cookie-banner {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+</style>

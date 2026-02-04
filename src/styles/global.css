@@ -155,6 +155,11 @@
   --color-camel: hsl(32.53, 39.34%, 58.63%);
   --color-bCoffe: hsl(16.22, 35.92%, 40.39%);
 
+  --color--text-light1: oklch(0.9257 0.0111 63.35);
+  --color--text-light2: oklch(0.787 0.0354 75.9);
+  --color--text-light3: oklch(0.7188 0.0475 66.95);
+  --color-bgWhite: oklch(0.9731 0 0);
+
   --text-h1: 5rem;
   --text-h2: 4.2rem;
   --text-h3: 3.15rem;
@@ -174,3 +179,4 @@
   }
   --animate-carousel: carousel 5s linear infinite;
 }
+

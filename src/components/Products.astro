@@ -3,45 +3,49 @@ const products = [
   {
     id: 1,
     name: "RÉPLICAS",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.",
+    description: "Nos apasiona dar forma a piezas especiales que cuenten vuestra historia.",
     href: "/replicas",
     image: "../../src/assets/images/product-1.jpg",
   },
   {
     id: 2,
     name: "VELAS ARTESANALES",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.",
+    description: "Luz que nace del detalle. Ceras vegetales vertidas en recipientes creados a mano para transformar tu atmósfera..",
     href: "/velas-artesanales",
     image: "../../src/assets/images/product-2.jpg",
   },
   {
     id: 3,
     name: "PERFUMES SÓLIDOS",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.",
+    description: "La esencia de la naturaleza en un formato íntimo y delicado, diseñado para fundirse con tu piel.",
     href: "/perfumes-solidos",
     image: "../../src/assets/images/product-3.jpg",
   },
   {
     id: 4,
     name: "JABONES ARTESANALES",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.",
+    description: "Cuidado consciente y sensorial. Limpieza profunda con ingredientes naturales que respetan tu cuerpo y el entorno.",
     href: "/jabones-artesanales",
     image: "../../src/assets/images/product-4.jpg",
   },
 ];
 ---
 
-<section class="flex flex-col items-center justify-center max-w-[1500px] mx-auto column-gap-4 px-[72px]">
-  <h6 class="text-base text-camel font-bold">Creamos productos únicos</h6>
-  <div class="grid grid-cols-4 w-full gap-x-4 max-h-[400px] relative">
-    {
+<section class="flex flex-col items-center justify-center max-w-[1500px] mx-auto column-gap-4 px-20 pt-28 pb-28 gap-y-12" id="products">
+  <div class="flex flex-col items-center justify-center w-2/3 gap-y-4">
+    <h1 class="text-h2 font-extralight text-camel leading-[1.2] text-center">NUESTROS <span class="font-normal">PRODUCTOS</span></h1>
+    <h6 class="text-base text-camel font-bold">Creamos productos únicos</h6>
+    <p class="text-base text-bCoffe text-center w-[70%]">Fusionamos texturas orgánicas, aromas que evocan recuerdos y procesos manuales para dar vida a objetos que no solo ocupan un lugar en tu casa, sino que transforman tu estado de ánimo</p>
+  </div>
+    <div class="grid grid-cols-4 w-full gap-x-4 max-h-[400px] relative">
+      {
       products.map((product) => (
-        <div key={product.id} class="col-span-1 min-h-[400px] relative overflow-hidden">
+        <div class="col-span-1 min-h-[400px] relative overflow-hidden">
           <a href={product.href} class="group flex items-start size-full overflow-hidden">
             <img src={product.image} alt={product.name} class="absolute h-full w-full object-cover hover:scale-x-105 hover:scale-y-105 transition-all duration-400 transform-3d"/>
             <div class="pointer-events-none absolute inset-0 z-3 flex size-full flex-col items-start justify-end gap-2 p-6" style="background-color: rgba(17, 14, 9, 0.4); background-image: linear-gradient(180deg, #fff0, var(--color--bg-dark3, var(--color-dark-orchestra)))">
-              <h4 class="text-h4 text-white font-creato leading-tight transition-transform duration-450 group-hover:-translate-y-2">{product.name}</h4>
-              <p class="hidden font-creato text-camel group-hover:block transition-all duration-450">{product.description}</p>
+              <h4 class="text-h4 text--text-light1 font-creato leading-tight transition-transform duration-450 group-hover:-translate-y-2">{product.name}</h4>
+              <p class="max-h-0 overflow-hidden opacity-0 font-creato text--text-light2 transition-all duration-450 group-hover:max-h-96 group-hover:opacity-100">{product.description}</p>
             </div>
           </a>
         </div>

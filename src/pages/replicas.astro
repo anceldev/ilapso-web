@@ -2,9 +2,19 @@
 import Layout from "../layouts/Layout.astro";
 import ReplicasComponent from "../components/ReplicasComponent.astro";
 import Footer from "../components/Footer.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import NavBar from "../components/NavBar.astro";
+
+const content = {
+  title: "RÉPLICAS",
+  subtitle: "El arte de detener el tiempo",
+  description: "Capturo la esencia de un gesto a través de réplicas hiperrealistas en yeso. Cada pieza es un molde único que preserva cada detalle, línea y emoción de tus manos, convirtiendo un instante efímero en una escultura eterna",
+}
 ---
 
 <Layout>
+  <NavBar />
+  <SectionHeader content={content} />
   <ReplicasComponent />
-  <Footer />
+  <!-- <Footer /> -->
 </Layout>

@@ -1,147 +1,104 @@
----
-// const items = ["Apple", "Google", "Microsoft", "Amazon", "Facebook"];
-const items = [
-  {
-    id: 1,
-    name: "Image 1",
-    // src: "/images/carousel-1.webp",
-    src: "../../src/assets/images/carousel-1.webp",
-  },
-  {
-    id: 2,
-    name: "Image 2",
-    src: "../../src/assets/images/carousel-2.webp",
-  },
-  {
-    id: 3,
-    name: "Image 3",
-    src: "../../src/assets/images/carousel-3.webp",
-  },
-  {
-    id: 4,
-    name: "Image 4",
-    src: "../../src/assets/images/carousel-4.webp",
-  },
-];
----
-
-<div class="relative flex overflow-hidden py-10 pt-30">
-  <!-- <div class="flex animate-carousel whitespace-nowrap">
-    <div class="flex">
-      {
-        items.map((item: { id: number; name: string; src: string }) => (
-          <picture class="mx-8 w-2xs">
-            <source srcset={item.src} type="image/webp" />
-            <img src={item.src} alt={item.name} />
-          </picture>
-        ))
-      }
-    </div>
-    <div class="flex">
-      {
-        items.map((item: { id: number; name: string; src: string }) => (
-          <picture class="mx-8 w-2xs">
-            <source srcset={item.src} type="image/webp" />
-            <img src={item.src} alt={item.name} />
-          </picture>
-        ))
-      }
-    </div>
-  </div>
-
-  <div
-    class="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-brilliance to-transparent"
-  >
-  </div>
-  <div
-    class="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-brilliance to-transparent"
-  >
-  </div> -->
-  <section class="bg-black text-white pt-8 pb-4">
-    <h2 class="text-center text-2xl mb-2 font-bold leading-8">Our Clients</h2>
-    <p class="text-center text-lg font-extralight leading-8">
-      We are trusted by the world’s most innovative teams
-    </p>
-
-    <div
-      class="logos group relative overflow-hidden whitespace-nowrap py-10 [mask-image:_linear-gradient(to_right,_transparent_0,_white_128px,white_calc(100%-128px),_transparent_100%)]"
-    >
-      <div
-        class="animate-carousel group-hover:animation-pause inline-block w-max"
-      >
-        <!-- Ensure that the images cover entire screen width for a smooth transition -->
-        <img
-          class="mx-4 inline h-16"
-          src="https://tailwindui.com/plus/img/logos/158x48/transistor-logo-white.svg"
-          alt="Transistor"
-        />
-        <img
-          class="mx-4 inline h-16"
-          src="https://tailwindui.com/plus/img/logos/158x48/reform-logo-white.svg"
-          alt="Reform"
-        />
-        <img
-          class="mx-4 inline h-16"
-          src="https://tailwindui.com/plus/img/logos/158x48/tuple-logo-white.svg"
-          alt="Tuple"
-        />
-        <img
-          class="mx-4 inline h-16"
-          src="https://tailwindui.com/plus/img/logos/158x48/savvycal-logo-white.svg"
-          alt="SavvyCal"
-        />
-        <img
-          class="mx-4 inline h-16"
-          src="https://tailwindui.com/plus/img/logos/158x48/statamic-logo-white.svg"
-          alt="SavvyCal"
-        />
-        <img
-          class="mx-4 inline h-16"
-          src="https://tailwindui.com/plus/img/logos/158x48/laravel-logo-white.svg"
-          alt="SavvyCal"
-        />
+<section>
+  <div class="carousel basic">
+    <div class="group">
+      <!-- <div class="card">A</div> -->
+      <div class="card">
+        <picture>
+          <img src="../../src/assets/images/carousel-1.webp" alt="" />
+        </picture>
       </div>
-
-      <!-- Duplicate of the above for infinite effect (you can use javascript to duplicate this too) -->
-      <div
-        class="animate-carousel group-hover:animation-pause inline-block w-max"
-      >
-        <!-- Ensure that the images cover entire screen width for a smooth transition -->
-        <img
-          class="mx-4 inline h-16"
-          src="https://tailwindui.com/plus/img/logos/158x48/transistor-logo-white.svg"
-          alt="Transistor"
-        />
-        <img
-          class="mx-4 inline h-16"
-          src="https://tailwindui.com/plus/img/logos/158x48/reform-logo-white.svg"
-          alt="Reform"
-        />
-        <img
-          class="mx-4 inline h-16"
-          src="https://tailwindui.com/plus/img/logos/158x48/tuple-logo-white.svg"
-          alt="Tuple"
-        />
-        <img
-          class="mx-4 inline h-16"
-          src="https://tailwindui.com/plus/img/logos/158x48/savvycal-logo-white.svg"
-          alt="SavvyCal"
-        />
-        <img
-          class="mx-4 inline h-16"
-          src="https://tailwindui.com/plus/img/logos/158x48/statamic-logo-white.svg"
-          alt="SavvyCal"
-        />
-        <img
-          class="mx-4 inline h-16"
-          src="https://tailwindui.com/plus/img/logos/158x48/laravel-logo-white.svg"
-          alt="SavvyCal"
-        />
+      <div class="card">
+        <picture>
+          <img src="../../src/assets/images/carousel-2.webp" alt="" />
+        </picture>
+      </div>
+      <div class="card">
+        <picture>
+          <img src="../../src/assets/images/carousel-3.webp" alt="" />
+        </picture>
+      </div>
+      <div class="card">
+        <picture>
+          <img src="../../src/assets/images/carousel-4.webp" alt="" />
+        </picture>
       </div>
     </div>
-  </section>
-</div>
-<!--
-<div class="mx-8 flex h-20 w-40 items-center justify-center rounded-xl bg-slate-800 text-xl font-bold text-white shadow-lg border border-slate-700">
-  {item.name}
-</div> -->
+    <div aria-hidden class="group">
+      <div class="card">
+        <picture>
+          <img src="../../src/assets/images/carousel-1.webp" alt="" />
+        </picture>
+      </div>
+      <div class="card">
+        <picture>
+          <img src="../../src/assets/images/carousel-2.webp" alt="" />
+        </picture>
+      </div>
+      <div class="card">
+        <picture>
+          <img src="../../src/assets/images/carousel-3.webp" alt="" />
+        </picture>
+      </div>
+      <div class="card">
+        <picture>
+          <img src="../../src/assets/images/carousel-4.webp" alt="" />
+        </picture>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .carousel {
+    margin: 0 auto;
+    padding: 0 0;
+    /*max-width: 700px;*/
+    overflow: hidden;
+    display: flex;
+    > * {
+      flex: 0 0 100%;
+    }
+  }
+  .group {
+    display: flex;
+    gap: 20px;
+    padding-right: 20px;
+    will-change: transform;
+    animation: spin 65s linear infinite;
+  }
+
+  .card {
+    /*width: 100%;*/
+    width: 400px;
+    color: white;
+    /*border-radius: 24px;*/
+    /*box-shadow: rgba(0, 0, 0, 10%) 5px 5px 20px 0;*/
+    /* padding: 20px; */
+    padding: 0 20px;
+    font-size: xx-large;
+    justify-content: center;
+    align-items: center;
+    /*min-height: 200px;*/
+
+    /*&:nth-child(1) {
+      background: #7958ff;
+    }
+
+    &:nth-child(2) {
+      background: #5d34f2;
+    }
+
+    &:nth-child(3) {
+      background: #4300da;
+    }*/
+  }
+
+  @keyframes spin {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+</style>
