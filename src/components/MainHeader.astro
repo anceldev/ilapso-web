@@ -1,1 +1,55 @@
-<header class="flex flex-col items-center justify-center max-w-[1500px] mx-auto px-20 pt-28 gap-y-12 h-screen"></header>
+<header class="main-header relative flex flex-col items-center justify-center max-w-[1500px] mx-auto px-6 lg:px-20 gap-y-12 h-screen overflow-hidden">
+  <!-- Contenido del header -->
+  <div class="relative z-10 flex flex-col items-center justify-center text-center w-full gap-y-4">
+    <!-- Aquí puedes añadir el contenido del header -->
+     <h2 class="header-text text-h6 lg:text-3xl font-creato text-camel text-center">BIENVENIDOS A</h2>
+     <picture class="header-image w-[90%] lg:w-[60%] mx-auto">
+      <img src="../../src/assets/images/ilapso-name.webp" alt="i.lapso">
+     </picture>
+  </div>
+</header>
+
+<style>
+  .main-header {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .main-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('../../src/assets/images/header-background.webp');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    filter: blur(2px);
+    z-index: 0;
+    transform: scale(1.05);
+  }
+
+  .main-header > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Animaciones de entrada para el texto y la imagen */
+  .header-text {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out 0.2s forwards;
+  }
+
+  .header-image {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s ease-out 0.2s forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

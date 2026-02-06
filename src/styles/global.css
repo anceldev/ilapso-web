@@ -155,10 +155,12 @@
   --color-camel: hsl(32.53, 39.34%, 58.63%);
   --color-bCoffe: hsl(16.22, 35.92%, 40.39%);
 
-  --color--text-light1: oklch(0.9257 0.0111 63.35);
-  --color--text-light2: oklch(0.787 0.0354 75.9);
-  --color--text-light3: oklch(0.7188 0.0475 66.95);
+  --color-text-light1: oklch(0.9257 0.0111 63.35);
+  --color-text-light2: oklch(0.787 0.0354 75.9);
+  --color-text-light3: oklch(0.7188 0.0475 66.95);
   --color-bgWhite: oklch(0.9731 0 0);
+  --color-bgWhite2: #F9F9F3;
+  --color-bgWhite3: #FDFBF9;
 
   --text-h1: 5rem;
   --text-h2: 4.2rem;
@@ -167,6 +169,9 @@
   --text-h5: 1.77rem;
   --text-h6: 1.33rem;
   --text-paragraph-big: 1.2rem;
+  --text-paragraph: 1rem;
+  --text-pharagraph-small: .85rem;
+  --text-pharagraph-tiny: .75rem;
 
 
   @keyframes carousel {

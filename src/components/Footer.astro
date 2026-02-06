@@ -13,7 +13,7 @@ export const menu = [
   {
     id: 3,
     name: "PRODUCTOS",
-    href: "#products",
+    href: "/#products",
   },
   {
     id: 4,
@@ -26,6 +26,16 @@ export const talleres = [
     id: 1,
     name: "TALLER 1",
     href: "#",
+  },
+  {
+    id: 2,
+    name: "TALLER 2",
+    href: "#",
+  },
+  {
+    id: 3,
+    name: "TALLER 3",
+    href: "#",
   }
 ]
 export const redesSociales = [
@@ -36,36 +46,36 @@ export const redesSociales = [
   }
 ]
 ---
-<footer class="pt-18 pb-6 border-t border-malt">
-  <div class="max-w-[1500px] mx-[72px]">
+<footer class="pt-10 lg:pt-18 pb-6 border-t border-malt">
+  <div class="max-w-[1500px] mx-6 lg:mx-[72px]">
     <div class="flex">
-      <div class="flex gap-4 w-2/3">
-        <div class="w-1/3">
-          <h3 class="mb-1.5 font-medium text-bCoffe">I.LAPSO</h3>
+      <div class="flex flex-col lg:flex-row gap-5 lg:gap-x-4 lg:w-2/3">
+        <div class="lg:w-1/3">
+          <h3 class="mb-1.5 lg:text-base text-pharagraph-small text-bCoffe font-medium">I.LAPSO</h3>
           <ul>
             {menu.map((item) => (
               <a href={item.href} class="hover:text-camel transition-all duration-400">
-                <li class="font-creato text-base text-camel" key={item.id}>{item.name}</li>
+                <li class="font-creato lg:text-base text-pharagraph-tiny text-camel">{item.name}</li>
               </a>
             ))}
           </ul>
         </div>
-        <div class="w-1/3">
-          <h3 class="mb-1.5 text-bCoffe font-medium">TALLERES</h3>
+        <div class="lg:w-1/3">
+          <h3 class="mb-1.5 lg:text-base text-pharagraph-small text-bCoffe font-medium">TALLERES</h3>
           <ul>
             {talleres.map((item) => (
               <a href={item.href} class="hover:text-camel transition-all duration-400">
-                <li class="font-creato text-base text-camel" key={item.id}>{item.name}</li>
+                <li class="font-creato lg:text-base text-pharagraph-tiny text-camel">{item.name}</li>
               </a>
             ))}
           </ul>
         </div>
-        <div class="w-1/3">
-          <h3 class="mb-1.5 text-bCoffe font-medium">REDES SOCIALES</h3>
+        <div class="lg:w-1/3">
+          <h3 class="mb-1.5 lg:text-base text-pharagraph-small text-bCoffe font-medium">REDES SOCIALES</h3>
           <ul class="flex gap-2">
             {redesSociales.map((item) => (
               <a href={item.href} target="_blank">
-                <li class="font-creato text-base text-camel" key={item.id}>{item.name}</li>
+                <li class="font-creato lg:text-base text-pharagraph-tiny text-camel">{item.name}</li>
               </a>
             ))}
           </ul>
@@ -73,11 +83,10 @@ export const redesSociales = [
       </div>
     </div>
     <div>
-      <h1 class="font-perpetua text-[180px] text-camel">i.lapso</h1>
-      <!-- <h1 class="font-perpetua text-[180px] text-camel">I.LAPSO</h1> -->
+      <h1 class="font-perpetua text-h1 lg:text-[180px] text-camel">i.lapso</h1>
     </div>
       <div>
-        <p class="font-creato text-sm text-left text-bCoffe"><b>©ANDEV DESARROLLOS.</b> Todos los derechos reservados.</p>
+        <p class="font-creato lg:text-base text-pharagraph-tiny text-left text-bCoffe"><b>©ANCEL DESARROLLOS.</b> Todos los derechos reservados.</p>
     </div>
   </div>
 </footer>

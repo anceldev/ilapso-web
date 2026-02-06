@@ -1,0 +1,100 @@
+---
+import Footer from "../../components/Footer.astro";
+import NavBar from "../../components/NavBar.astro";
+import Layout from "../../layouts/Layout.astro";
+
+export function getStaticPaths() {
+  return [
+    {params: { taller: "taller-velas-febrero-2026" }},
+    {params: { taller: "taller-velas-mayo-2026" }},
+    {params: { taller: "taller-perfumes-febrero-2026" }},
+    {params: { taller: "taller-jabones-febrero-2026" }},
+  ];
+}
+const { taller } = Astro.params;
+
+export const detailedTalleres = [
+  {
+    id: "taller-velas-febrero-2026",
+    href: "/talleres/taller-velas-febrero-2026",
+    title: "Velas Artesanales",
+    description: "Aprende a crear luz y atmósfera con tus propias manos. En este taller exploramos el mundo de las ceras vegetales y los aromas para que diseñes una vela única, desde el vertido hasta el detalle final.",
+    image: "../../src/assets/images/product-1.jpg",
+    date: "Febrero 2026",
+    time: "10:00 - 12:00",
+    location: "Madrid",
+    price: "100 €",
+    capacity: 10,
+    register: "https://www.google.com",
+  },
+  {
+    id: "taller-velas-mayo-2026",
+    href: "/talleres/taller-velas-mayo-2026",
+    title: "Velas Artesanales",
+    description: "Aprende a crear luz y atmósfera con tus propias manos. En este taller exploramos el mundo de las ceras vegetales y los aromas para que diseñes una vela única, desde el vertido hasta el detalle final",
+    image: "../../src/assets/images/product-2.jpg",
+    date: "Mayo 2026",
+    time: "10:00 - 12:00",
+    location: "Madrid",
+    price: "100 €",
+    capacity: 10,
+    register: "https://www.google.com",
+  },
+  {
+    id: "taller-perfumes-febrero-2026",
+    href: "/talleres/taller-perfumes-febrero-2026",
+    title: "Perfumes Sólidos",
+    description: "Descubre una nueva forma de perfumarte: texturas sedosas y aromas naturales que se funden con el calor de tu piel. Un ritual íntimo, delicado y libre de alcohol.",
+    image: "../../src/assets/images/product-3.jpg",
+    date: "Febrero 2026",
+    time: "10:00 - 12:00",
+    location: "Madrid",
+    price: "100 €",
+    capacity: 10,
+    register: "https://www.google.com",
+  },
+  {
+    id: "taller-jabones-febrero-2026",
+    href: "/talleres/taller-jabones-febrero-2026",
+    title: "Jabones Artesanales",
+    description: "Jabones creados con ingredientes naturales y aceites vegetales que respetan tu cuerpo. Una limpieza suave y nutritiva que transforma el baño en un momento de puro mimo",
+    image: "../../src/assets/images/product-4.jpg",
+    date: "Abril 2026",
+    time: "10:00 - 12:00",
+    location: "Madrid",
+    price: "100 €",
+    capacity: 10,
+    register: "https://www.google.com",
+  },
+]
+
+const findTaller = detailedTalleres.find((item) => item.id === taller);
+
+if (!findTaller) {
+  return Astro.redirect("/404");
+}
+
+---
+
+<Layout>
+  <NavBar />
+  <section class="flex flex-col items-center justify-center max-w-[1500px] mx-auto column-gap-4 px-6 lg:px-20 lg:py-28 pb-12 pt-22 gap-y-12">
+    <div class="flex flex-col-reverse lg:flex lg:flex-row gap-y-4 lg:h-screen border-t border-t-malt lg:border-t-0 pt-12 lg:pt-0">
+      <div class="lg:w-1/2">
+        <picture>
+          <img src={findTaller.image} alt={findTaller.title} class="w-full h-full object-cover" />
+        </picture>
+      </div>
+      <div class="lg:px-8 lg:w-1/2 flex flex-col gap-y-2">
+        <h1 class="lg:text-h2 text-h5 font-extralight text-camel leading-[1.2] text-left pr-20">{findTaller.title}</h1>
+        <h5 class="lg:text-base text-pharagraph-tiny text-camel">{findTaller.description}</h5>
+        <h6 class="lg:text-base text-pharagraph-tiny text-bCoffe font-medium">{`${findTaller.date} - ${findTaller.time} | ${findTaller.location}`}</h6>
+        <p class="lg:text-base text-pharagraph-tiny text-bCoffe font-medium font-inconsolata">{findTaller.price}</p>
+        
+        <a href={findTaller.register} class="text-pharagraph-small font-semibold text-white lg:text-base font-creato px-4 py-2 bg-malt hover:bg-camel transition-all duration-400 w-fit">INSCRIBIRME</a>
+      </div>
+    </div>
+
+  </section>
+  <Footer />
+</Layout>

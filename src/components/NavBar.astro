@@ -8,7 +8,7 @@ export const navItems = [
   {
     id: 2,
     name: "NOSOTROS",
-    href: "#about",
+    href: "/#about",
   },
   {
     id: 3,
@@ -18,26 +18,103 @@ export const navItems = [
   {
     id: 4,
     name: "TALLERES",
-    href: "#",
+    href: "/#talleres",
   },
 ];
 ---
 
-<div class="fixed w-full h-22.5 z-50 px-20" id="navbar">
+<div class="fixed w-full h-22.5 z-50 px-4 md:px-20" id="navbar">
   <div class="flex text-camel justify-between h-full items-center">
-    <a href="/" class="flex items-center align-middle text-center justify-center gap-2 text-5xl font-perpetua">
-    <img src="../../src/assets/ilapso-logoname.webp" alt="i.lapso" class="h-12">
+    <a href="/" class="flex items-center align-middle text-center justify-center gap-2 text-3xl md:text-5xl font-perpetua">
+      <img src="../../src/assets/ilapso-logoname2.webp" alt="i.lapso" class="h-8 md:h-12">
     </a>
-    <nav class="flex list-none">
+    
+    <!-- Menú desktop -->
+    <nav class="hidden md:flex list-none">
       {
         navItems.map((item) => (
           <li class="p-5 font-creato text-base text-camel hover:text-bCoffe transition-all duration-400"><a href={item.href}>{item.name}</a></li>
         ))
       }
     </nav>
-    <a href="mailto:support@example.com?subject=Support%20Request&body=Por%20favor%20escribe%20tu%20consulta%20aquí." class="text-base font-creato bg-malt hover:bg-camel transition-all duration-400 text-white px-4 py-2">Contacto</a>
+    
+    <!-- Botón contacto desktop -->
+    <a href="mailto:support@example.com?subject=Support%20Request&body=Por%20favor%20escribe%20tu%20consulta%20aquí." class="hidden md:block text-base font-creato bg-malt hover:bg-camel transition-all duration-400 text-white px-4 py-2">Contacto</a>
+    
+    <!-- Botón hamburguesa móvil -->
+    <button id="mobile-menu-button" class="md:hidden flex flex-col gap-1.5 p-2 justify-center items-center relative w-10 h-10" aria-label="Menú">
+      <span class="w-6 h-0.5 bg-camel transition-all duration-300 block absolute" id="hamburger-line-1" style="top: 12px;"></span>
+      <span class="w-6 h-0.5 bg-camel transition-all duration-300 block absolute" id="hamburger-line-2" style="top: 18px;"></span>
+      <span class="w-6 h-0.5 bg-camel transition-all duration-300 block absolute" id="hamburger-line-3" style="top: 24px;"></span>
+    </button>
   </div>
+  
+  <!-- Menú móvil -->
+  <nav id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-bgWhite border-t border-malt shadow-lg">
+    <ul class="flex flex-col list-none">
+      {
+        navItems.map((item) => (
+          <li class="border-b border-malt last:border-b-0">
+            <a href={item.href} class="block p-5 font-creato text-base text-camel hover:text-bCoffe hover:bg-malt transition-all duration-400">{item.name}</a>
+          </li>
+        ))
+      }
+      <li class="border-b border-malt">
+        <a href="mailto:support@example.com?subject=Support%20Request&body=Por%20favor%20escribe%20tu%20consulta%20aquí." class="block p-5 font-creato text-base bg-malt hover:bg-camel transition-all duration-400 text-white">Contacto</a>
+      </li>
+    </ul>
+  </nav>
 </div>
+
+<script>
+  (function() {
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const line1 = document.getElementById('hamburger-line-1');
+    const line2 = document.getElementById('hamburger-line-2');
+    const line3 = document.getElementById('hamburger-line-3');
+    
+    if (!menuButton || !mobileMenu || !line1 || !line2 || !line3) return;
+    
+    let isOpen = false;
+    
+    menuButton.addEventListener('click', () => {
+      isOpen = !isOpen;
+      
+      if (isOpen) {
+        mobileMenu.classList.remove('hidden');
+        // Animación del botón hamburguesa a X - centrado en el medio
+        line1.style.transform = 'rotate(45deg)';
+        line1.style.top = '18px';
+        line2.style.opacity = '0';
+        line3.style.transform = 'rotate(-45deg)';
+        line3.style.top = '18px';
+      } else {
+        mobileMenu.classList.add('hidden');
+        // Volver a hamburguesa
+        line1.style.transform = 'none';
+        line1.style.top = '12px';
+        line2.style.opacity = '1';
+        line3.style.transform = 'none';
+        line3.style.top = '24px';
+      }
+    });
+    
+    // Cerrar menú al hacer clic en un enlace
+    const menuLinks = mobileMenu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        isOpen = false;
+        line1.style.transform = 'none';
+        line1.style.top = '12px';
+        line2.style.opacity = '1';
+        line3.style.transform = 'none';
+        line3.style.top = '24px';
+      });
+    });
+  })();
+</script>
 
 
 <style>
@@ -45,7 +122,16 @@ export const navItems = [
     /* border: 1px solid green; */
   }
   #navbar {
-
     background-image: linear-gradient(to bottom, hsla(0, 0%, 100%, 0.5), hsla(32, 30%, 80.39%, 0));
+  }
+  #mobile-menu-button {
+    min-width: 44px;
+    min-height: 44px;
+    overflow: visible;
+  }
+  #mobile-menu-button span {
+    transform-origin: center;
+    left: 50%;
+    margin-left: -12px;
   }
 </style>

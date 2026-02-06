@@ -52,7 +52,6 @@
   .carousel {
     margin: 0 auto;
     padding: 0 0;
-    /*max-width: 700px;*/
     overflow: hidden;
     display: flex;
     > * {
@@ -68,29 +67,19 @@
   }
 
   .card {
-    /*width: 100%;*/
-    width: 400px;
+    width: 280px;
     color: white;
-    /*border-radius: 24px;*/
-    /*box-shadow: rgba(0, 0, 0, 10%) 5px 5px 20px 0;*/
-    /* padding: 20px; */
-    padding: 0 20px;
+    padding: 0 12px;
     font-size: xx-large;
     justify-content: center;
     align-items: center;
-    /*min-height: 200px;*/
+  }
 
-    /*&:nth-child(1) {
-      background: #7958ff;
+  @media (min-width: 768px) {
+    .card {
+      width: 400px;
+      padding: 0 20px;
     }
-
-    &:nth-child(2) {
-      background: #5d34f2;
-    }
-
-    &:nth-child(3) {
-      background: #4300da;
-    }*/
   }
 
   @keyframes spin {
