@@ -1,0 +1,79 @@
+---
+import Footer from "@/components/Footer.astro";
+import NavBar from "@/components/NavBar.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getTalleresByType, getCategoriaInfo } from "@/lib/data";
+
+export function getStaticPaths() {
+  return [
+    { params: { categoria: "velas" } },
+    { params: { categoria: "perfumes" } },
+    { params: { categoria: "jabones" } },
+  ];
+}
+
+const { categoria } = Astro.params;
+
+if (!categoria) {
+  return Astro.redirect("/404");
+}
+
+const categoriaInfo = getCategoriaInfo(categoria);
+const talleresCategoria = getTalleresByType(categoria);
+
+if (!categoriaInfo || talleresCategoria.length === 0) {
+  return Astro.redirect("/404");
+}
+
+const title = categoriaInfo.title;
+---
+
+<Layout title={ `Talleres - ${title}`}>
+  <NavBar />
+  <section class="flex flex-col items-center justify-center max-w-[1500px] mx-auto column-gap-4 px-6 lg:px-20 lg:py-28 pb-12 pt-22 gap-y-12">
+    <div class="flex flex-col items-center justify-center lg:w-2/3 gap-y-4">
+      <h1 class="lg:text-h2 text-h4 font-extralight text-camel leading-[1.2] text-center">
+        {categoriaInfo.title.toUpperCase()}
+      </h1>
+      <p class="text-base text-bCoffe text-center lg:w-[70%]">
+        {categoriaInfo.description}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 w-full gap-y-8 lg:gap-x-8 lg:gap-y-12">
+      {
+        talleresCategoria.map((taller) => (
+          <div class="col-span-1 min-h-[400px] relative overflow-hidden">
+            <a href={taller.href} class="group flex items-start size-full overflow-hidden">
+              <img 
+                src={taller.image} 
+                alt={taller.title} 
+                class="absolute h-full w-full object-cover lg:hover:scale-x-105 lg:hover:scale-y-105 transition-all duration-400 transform-3d"
+              />
+              <div 
+                class="pointer-events-none absolute inset-0 z-3 flex size-full flex-col items-start justify-end gap-2 p-6" 
+                style="background-color: rgba(17, 14, 9, 0.4); background-image: linear-gradient(180deg, #fff0, var(--color--bg-dark3, var(--color-dark-orchestra)))"
+              >
+                <h4 class="text-h6 lg:text-h4 text-text-light1 font-creato leading-tight transition-transform duration-450 lg:group-hover:-translate-y-2">
+                  {taller.title}
+                </h4>
+                <p class="lg:max-h-0 lg:overflow-hidden lg:opacity-0 font-creato lg:text-base text-pharagraph-small text-text-light2 transition-all duration-450 group-hover:max-h-96 group-hover:opacity-100">
+                  {taller.description}
+                </p>
+                <div class="mt-2 lg:opacity-0 transition-opacity duration-450 group-hover:opacity-100">
+                  <h6 class="text-pharagraph-small text-text-light2 font-medium">
+                    {`${taller.date} - ${taller.time} | ${taller.location}`}
+                  </h6>
+                  <p class="text-pharagraph-small text-white font-medium font-inconsolata">
+                    {taller.price}
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+  <Footer />
+</Layout>

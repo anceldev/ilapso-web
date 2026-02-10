@@ -1,0 +1,85 @@
+---
+import Footer from "@/components/Footer.astro";
+import NavBar from "@/components/NavBar.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getProductoBySlug, getProductoCategoriaInfo, getProductosByCategoria } from "@/lib/data";
+
+export function getStaticPaths() {
+  const paths: Array<{ params: { categoria: string; producto: string } }> = [];
+  
+  // Réplicas
+  const replicas = getProductosByCategoria("replicas");
+  replicas.forEach(producto => {
+    paths.push({ params: { categoria: "replicas", producto: producto.slug } });
+  });
+  
+  // Velas
+  const velas = getProductosByCategoria("velas-artesanales");
+  velas.forEach(producto => {
+    paths.push({ params: { categoria: "velas-artesanales", producto: producto.slug } });
+  });
+  
+  // Perfumes
+  const perfumes = getProductosByCategoria("perfumes-solidos");
+  perfumes.forEach(producto => {
+    paths.push({ params: { categoria: "perfumes-solidos", producto: producto.slug } });
+  });
+  
+  // Jabones
+  const jabones = getProductosByCategoria("jabones-artesanales");
+  jabones.forEach(producto => {
+    paths.push({ params: { categoria: "jabones-artesanales", producto: producto.slug } });
+  });
+  
+  return paths;
+}
+
+const { categoria, producto } = Astro.params;
+
+if (!categoria || !producto) {
+  return Astro.redirect("/404");
+}
+
+const findProducto = getProductoBySlug(categoria, producto);
+const categoriaInfo = getProductoCategoriaInfo(categoria);
+
+if (!findProducto || !categoriaInfo) {
+  return Astro.redirect("/404");
+}
+
+const title = findProducto.quantity;
+---
+
+<Layout title={`${categoriaInfo.name} - ${title}`}>
+  <NavBar />
+  <section class="flex flex-col items-center justify-center max-w-[1500px] mx-auto column-gap-4 px-6 lg:px-20 lg:py-28 pb-12 pt-22 gap-y-12">
+    <div class="flex flex-col-reverse lg:flex lg:flex-row gap-y-4 lg:h-screen border-t border-t-malt lg:border-t-0 pt-12 lg:pt-0">
+      <div class="lg:w-1/2">
+        <picture>
+          <img src={findProducto.image} alt={findProducto.quantity} class="w-full h-full object-cover" />
+        </picture>
+      </div>
+      <div class="lg:px-8 lg:w-1/2 flex flex-col gap-y-4">
+        <h1 class="lg:text-h2 text-h5 font-extralight text-camel leading-[1.2] text-left pr-20">{findProducto.quantity}</h1>
+        <h5 class="lg:text-base text-pharagraph-tiny text-camel">{findProducto.description}</h5>
+        
+        <div class="flex flex-col gap-y-2">
+          <h6 class="lg:text-base text-pharagraph-tiny text-bCoffe font-medium">Precios disponibles:</h6>
+          {
+            findProducto.price.map((precio) => (
+              <div class="flex flex-col gap-y-1">
+                <p class="lg:text-base text-pharagraph-tiny text-bCoffe font-medium font-inconsolata">
+                  {precio.price}
+                  {precio.details && ` - ${precio.details}`}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+        
+        <a href="#" class="text-pharagraph-small font-semibold text-white lg:text-base font-creato px-4 py-2 bg-malt hover:bg-camel transition-all duration-400 w-fit mt-4">COMPRAR</a>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</Layout>

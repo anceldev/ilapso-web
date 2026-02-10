@@ -1,34 +1,6 @@
 ---
-const products = [
-  {
-    id: 1,
-    name: "RÉPLICAS",
-    description: "Nos apasiona dar forma a piezas especiales que cuenten vuestra historia.",
-    href: "/replicas",
-    image: "/images/product-1.jpg",
-  },
-  {
-    id: 2,
-    name: "VELAS ARTESANALES",
-    description: "Luz que nace del detalle. Ceras vegetales vertidas en recipientes creados a mano para transformar tu atmósfera.",
-    href: "/velas-artesanales",
-    image: "/images/product-2.jpg",
-  },
-  {
-    id: 3,
-    name: "PERFUMES SÓLIDOS",
-    description: "La esencia de la naturaleza en un formato íntimo y delicado, diseñado para fundirse con tu piel.",
-    href: "/perfumes-solidos",
-    image: "/images/product-3.jpg",
-  },
-  {
-    id: 4,
-    name: "JABONES ARTESANALES",
-    description: "Cuidado consciente y sensorial. Limpieza profunda con ingredientes naturales que respetan tu cuerpo y el entorno.",
-    href: "/jabones-artesanales",
-    image: "/images/product-4.jpg",
-  },
-];
+import { productsTypes } from "@/lib/data";
+const products = productsTypes;
 ---
 
 <section class="flex flex-col items-center justify-center max-w-[1500px] mx-auto column-gap-4 px-6 lg:px-20 lg:py-28 pb-12 pt-22 gap-y-12" id="products">

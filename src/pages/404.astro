@@ -1,0 +1,15 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Página no encontrada">
+  <NavBar />
+  <section class="flex flex-col items-center justify-center max-w-[1500px] mx-auto column-gap-4 px-6 lg:px-20 lg:py-28 pb-12 pt-22 gap-y-12">
+    <h1 class="lg:text-h2 text-h5 font-extralight text-camel leading-[1.2] text-left pr-20">Página no encontrada</h1>
+    <h5 class="lg:text-base text-pharagraph-tiny text-camel">La página que estás buscando no existe. Intenta con otra URL.</h5>
+    <a href="/" class="text-pharagraph-small font-semibold text-white lg:text-base font-creato px-4 py-2 bg-malt hover:bg-camel transition-all duration-400 w-fit">VOLVER A LA PÁGINA PRINCIPAL</a>
+  </section>
+  <Footer />
+</Layout>

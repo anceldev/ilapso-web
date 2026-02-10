@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import CookieBanner from "../components/CookieBanner.astro";
+const { title } = Astro.props;
 ---
 
 <!doctype html>
@@ -10,7 +11,7 @@ import CookieBanner from "../components/CookieBanner.astro";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>ilapso</title>
+    <title>{title} | ilapso</title>
   </head>
   <!-- <body class="bg-brilliance px-18 pb-18"> -->
   <body class="bg-bgWhite3">

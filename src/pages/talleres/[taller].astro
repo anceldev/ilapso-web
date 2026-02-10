@@ -1,7 +1,8 @@
 ---
-import Footer from "../../components/Footer.astro";
-import NavBar from "../../components/NavBar.astro";
-import Layout from "../../layouts/Layout.astro";
+import Footer from "@/components/Footer.astro";
+import NavBar from "@/components/NavBar.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getTallerById } from "@/lib/data";
 
 export function getStaticPaths() {
   return [
@@ -11,72 +12,24 @@ export function getStaticPaths() {
     {params: { taller: "taller-jabones-febrero-2026" }},
   ];
 }
+
 const { taller } = Astro.params;
 
-export const detailedTalleres = [
-  {
-    id: "taller-velas-febrero-2026",
-    href: "/talleres/taller-velas-febrero-2026",
-    title: "Velas Artesanales",
-    description: "Aprende a crear luz y atmósfera con tus propias manos. En este taller exploramos el mundo de las ceras vegetales y los aromas para que diseñes una vela única, desde el vertido hasta el detalle final.",
-    image: "/images/product-1.jpg",
-    date: "Febrero 2026",
-    time: "10:00 - 12:00",
-    location: "Madrid",
-    price: "100 €",
-    capacity: 10,
-    register: "https://www.google.com",
-  },
-  {
-    id: "taller-velas-mayo-2026",
-    href: "/talleres/taller-velas-mayo-2026",
-    title: "Velas Artesanales",
-    description: "Aprende a crear luz y atmósfera con tus propias manos. En este taller exploramos el mundo de las ceras vegetales y los aromas para que diseñes una vela única, desde el vertido hasta el detalle final",
-    image: "/images/product-2.jpg",
-    date: "Mayo 2026",
-    time: "10:00 - 12:00",
-    location: "Madrid",
-    price: "100 €",
-    capacity: 10,
-    register: "https://www.google.com",
-  },
-  {
-    id: "taller-perfumes-febrero-2026",
-    href: "/talleres/taller-perfumes-febrero-2026",
-    title: "Perfumes Sólidos",
-    description: "Descubre una nueva forma de perfumarte: texturas sedosas y aromas naturales que se funden con el calor de tu piel. Un ritual íntimo, delicado y libre de alcohol.",
-    image: "/images/product-3.jpg",
-    date: "Febrero 2026",
-    time: "10:00 - 12:00",
-    location: "Madrid",
-    price: "100 €",
-    capacity: 10,
-    register: "https://www.google.com",
-  },
-  {
-    id: "taller-jabones-febrero-2026",
-    href: "/talleres/taller-jabones-febrero-2026",
-    title: "Jabones Artesanales",
-    description: "Jabones creados con ingredientes naturales y aceites vegetales que respetan tu cuerpo. Una limpieza suave y nutritiva que transforma el baño en un momento de puro mimo",
-    image: "/images/product-4.jpg",
-    date: "Abril 2026",
-    time: "10:00 - 12:00",
-    location: "Madrid",
-    price: "100 €",
-    capacity: 10,
-    register: "https://www.google.com",
-  },
-]
+if (!taller) {
+  return Astro.redirect("/404");
+}
 
-const findTaller = detailedTalleres.find((item) => item.id === taller);
+const findTaller = getTallerById(taller);
 
 if (!findTaller) {
   return Astro.redirect("/404");
 }
 
+const title = findTaller.title;
+
 ---
 
-<Layout>
+<Layout title={ `Taller - ${title}`}>
   <NavBar />
   <section class="flex flex-col items-center justify-center max-w-[1500px] mx-auto column-gap-4 px-6 lg:px-20 lg:py-28 pb-12 pt-22 gap-y-12">
     <div class="flex flex-col-reverse lg:flex lg:flex-row gap-y-4 lg:h-screen border-t border-t-malt lg:border-t-0 pt-12 lg:pt-0">

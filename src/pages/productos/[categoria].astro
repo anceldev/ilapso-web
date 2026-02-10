@@ -1,0 +1,93 @@
+---
+import Footer from "@/components/Footer.astro";
+import NavBar from "@/components/NavBar.astro";
+import Layout from "@/layouts/Layout.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import ReplicasComponent from "@/components/ReplicasComponent.astro";
+import ProductosComponent from "@/components/ProductosComponent.astro";
+import { getProductoCategoriaInfo, getProductosByCategoria } from "@/lib/data";
+
+export function getStaticPaths() {
+  return [
+    { params: { categoria: "replicas" } },
+    { params: { categoria: "velas-artesanales" } },
+    { params: { categoria: "perfumes-solidos" } },
+    { params: { categoria: "jabones-artesanales" } },
+  ];
+}
+
+const { categoria } = Astro.params;
+
+if (!categoria) {
+  return Astro.redirect("/404");
+}
+
+const categoriaInfo = getProductoCategoriaInfo(categoria);
+const productos = getProductosByCategoria(categoria);
+
+if (!categoriaInfo) {
+  return Astro.redirect("/404");
+}
+
+const title = categoriaInfo.name;
+
+// Contenido específico para cada categoría
+let content;
+if (categoria === "replicas") {
+  content = {
+    title: "RÉPLICAS",
+    subtitle: "El arte de detener el tiempo",
+    description: "Capturo la esencia de un gesto a través de réplicas hiperrealistas en yeso. Cada pieza es un molde único que preserva cada detalle, línea y emoción de tus manos, convirtiendo un instante efímero en una escultura eterna",
+  };
+} else if (categoria === "velas-artesanales") {
+  content = {
+    title: "VELAS ARTESANALES",
+    subtitle: "Luz que transforma espacios",
+    description: categoriaInfo.description,
+  };
+} else if (categoria === "perfumes-solidos") {
+  content = {
+    title: "PERFUMES SÓLIDOS",
+    subtitle: "La esencia en tu piel",
+    description: categoriaInfo.description,
+  };
+} else if (categoria === "jabones-artesanales") {
+  content = {
+    title: "JABONES ARTESANALES",
+    subtitle: "Cuidado natural y consciente",
+    description: categoriaInfo.description,
+  };
+} else {
+  content = {
+    title: categoriaInfo.name,
+    subtitle: "",
+    description: categoriaInfo.description,
+  };
+}
+---
+
+<Layout title={title}>
+  <NavBar />
+  <SectionHeader content={content} />
+  
+  {categoria === "replicas" && <ReplicasComponent categoria={categoria} />}
+  
+  {categoria !== "replicas" && productos.length > 0 && (
+    <ProductosComponent productos={productos} categoria={categoria} />
+  )}
+  
+  {categoria !== "replicas" && productos.length === 0 && (
+    <section class="flex flex-col items-center justify-center max-w-[1500px] mx-auto column-gap-4 px-6 lg:px-20 lg:py-28 pb-12 pt-22 gap-y-12">
+      <div class="flex flex-col items-center justify-center lg:w-2/3 gap-y-4">
+        <p class="text-base text-bCoffe text-center lg:w-[70%]">
+          {categoriaInfo.description}
+        </p>
+        <p class="text-base text-bCoffe text-center lg:w-[70%] mt-8">
+          Próximamente disponible más información sobre nuestros productos de {categoriaInfo.name.toLowerCase()}.
+        </p>
+      </div>
+    </section>
+  )}
+  
+  <Footer />
+</Layout>
