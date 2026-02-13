@@ -46,6 +46,7 @@ export const talleres = [
 export const talleresVelas = [
   {
     id: "taller-velas-febrero-2026",
+    taller_id: "tv-feb-2026",
     href: "/talleres/taller-velas-febrero-2026",
     title: "Velas Artesanales",
     description: "Aprende a crear luz y atmósfera con tus propias manos. En este taller exploramos el mundo de las ceras vegetales y los aromas para que diseñes una vela única, desde el vertido hasta el detalle final.",
@@ -56,12 +57,13 @@ export const talleresVelas = [
     price: "100 €",
     capacity: 10,
     type: "velas",
-    register: "https://www.google.com",
+    register: "https://buy.stripe.com/test_28EbJ21CT1c7g3A4Z92VG00",
 
   },
   {
     id: "taller-velas-mayo-2026",
-    href: "/talleres/taller-velas-mayo-2026",
+    taller_id: "tvs-mayo-2026",
+      href: "/talleres/taller-velas-mayo-2026",
     title: "Velas Artesanales",
     description: "Aprende a crear luz y atmósfera con tus propias manos. En este taller exploramos el mundo de las ceras vegetales y los aromas para que diseñes una vela única, desde el vertido hasta el detalle final",
     image: "/images/product-2.jpg",
@@ -77,6 +79,7 @@ export const talleresVelas = [
 export const talleresPerfumes = [
   {
     id: "taller-perfumes-febrero-2026",
+    taller_id: "tp-feb-2026",
     href: "/talleres/taller-perfumes-febrero-2026",
     title: "Perfumes Sólidos",
     description: "Descubre una nueva forma de perfumarte: texturas sedosas y aromas naturales que se funden con el calor de tu piel. Un ritual íntimo, delicado y libre de alcohol.",
@@ -94,6 +97,7 @@ export const talleresPerfumes = [
 export const talleresJabones = [
   {
     id: "taller-jabones-febrero-2026",
+    taller_id: "tj-feb-2026",
     href: "/talleres/taller-jabones-febrero-2026",
     title: "Jabones Artesanales",
     description: "Jabones creados con ingredientes naturales y aceites vegetales que respetan tu cuerpo. Una limpieza suave y nutritiva que transforma el baño en un momento de puro mimo",
