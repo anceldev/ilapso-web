@@ -1,0 +1,159 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NavBar from "../../components/NavBar.astro";
+import Footer from "../../components/Footer.astro";
+import { getRegistrations } from "@/lib/db";
+import { getSession, signOut } from "@/lib/auth";
+import type { Registration } from "@/lib/db";
+
+// Esta página debe renderizarse dinámicamente
+export const prerender = false;
+
+// Verificar autenticación
+const session = await getSession();
+const isAuthenticated = session !== null;
+
+// Manejar logout
+if (Astro.request.method === "POST") {
+  const formData = await Astro.request.formData();
+  if (formData.get("action") === "logout") {
+    await signOut();
+    return Astro.redirect("/admin/login");
+  }
+}
+
+let registrations: Registration[] = [];
+let registrationsByTaller: Record<string, Registration[]> = {};
+let error: string | null = null;
+
+// Si no está autenticado, redirigir al login
+if (!isAuthenticated) {
+  return Astro.redirect("/admin/login");
+}
+
+try {
+  // Cargar inscripciones desde Supabase (requiere autenticación)
+  registrations = await getRegistrations();
+  
+  // Agrupar por taller
+  registrations.forEach((reg) => {
+    const key = reg.purchase_id || reg.purchase_name || "Sin identificar";
+    if (!registrationsByTaller[key]) {
+      registrationsByTaller[key] = [];
+    }
+    registrationsByTaller[key].push(reg);
+  });
+} catch (err) {
+  error = "Error al cargar las inscripciones desde la base de datos";
+  console.error("Error:", err);
+}
+---
+
+<Layout title="Administración - Inscripciones">
+  <NavBar />
+  <section class="flex flex-col items-center justify-center max-w-[1500px] mx-auto column-gap-4 px-6 lg:px-20 lg:py-28 pb-12 pt-22 gap-y-12 min-h-screen">
+    <div class="flex flex-col items-center justify-center w-full gap-y-6">
+      <div class="flex flex-col lg:flex-row justify-between items-center w-full">
+        <h1 class="lg:text-h2 text-h4 font-extralight text-camel leading-[1.2]">
+          INSCRIPCIONES A TALLERES
+        </h1>
+        <form method="POST" class="inline">
+          <input type="hidden" name="action" value="logout" />
+          <button
+            type="submit"
+            class="text-sm text-bCoffe hover:text-camel underline"
+          >
+            Cerrar sesión
+          </button>
+        </form>
+      </div>
+
+        {error ? (
+          <div class="w-full bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+            {error}
+          </div>
+        ) : Object.keys(registrationsByTaller).length === 0 ? (
+          <div class="w-full text-center text-bCoffe py-8">
+            <p>No hay inscripciones registradas aún.</p>
+          </div>
+        ) : (
+          <div class="w-full flex flex-col gap-y-8">
+            {Object.entries(registrationsByTaller).map(([tallerName, inscripciones]) => (
+              <div class="bg-bgWhite3 p-6 rounded-lg border border-malt">
+                <h2 class="text-xl font-semibold text-camel mb-4">
+                  {tallerName}
+                  <span class="text-base font-normal text-bCoffe ml-2">
+                    ({inscripciones.length} {inscripciones.length === 1 ? "inscripción" : "inscripciones"})
+                  </span>
+                </h2>
+                
+                <div class="overflow-x-auto">
+                  <table class="w-full border-collapse">
+                    <thead>
+                      <tr class="border-b border-malt">
+                        <th class="text-left py-2 px-4 text-camel font-semibold">Fecha</th>
+                        <th class="text-left py-2 px-4 text-camel font-semibold">Email</th>
+                        <th class="text-left py-2 px-4 text-camel font-semibold">Nombre</th>
+                        <th class="text-left py-2 px-4 text-camel font-semibold">Alergias</th>
+                        <th class="text-left py-2 px-4 text-camel font-semibold">Estado</th>
+                        <th class="text-left py-2 px-4 text-camel font-semibold">Importe</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {inscripciones.map((reg) => (
+                        <tr class="border-b border-malt/30">
+                          <td class="py-2 px-4 text-bCoffe">
+                            {reg.created_at 
+                              ? new Date(reg.created_at).toLocaleDateString('es-ES', { 
+                                  year: 'numeric', 
+                                  month: 'short', 
+                                  day: 'numeric',
+                                  hour: '2-digit',
+                                  minute: '2-digit'
+                                })
+                              : '-'}
+                          </td>
+                          <td class="py-2 px-4 text-bCoffe">
+                            <a href={`mailto:${reg.customer_email}`} class="text-camel hover:underline">
+                              {reg.customer_email}
+                            </a>
+                          </td>
+                          <td class="py-2 px-4 text-bCoffe">
+                            {reg.customer_name || '-'}
+                          </td>
+                          <td class="py-2 px-4 text-bCoffe">
+                            {reg.allergies || '-'}
+                          </td>
+                          <td class="py-2 px-4">
+                            <span class={`px-2 py-1 rounded text-xs ${
+                              reg.payment_status === 'paid' 
+                                ? 'bg-green-100 text-green-800' 
+                                : 'bg-yellow-100 text-yellow-800'
+                            }`}>
+                              {reg.payment_status === 'paid' ? 'Pagado' : reg.payment_status}
+                            </span>
+                          </td>
+                          <td class="py-2 px-4 text-bCoffe">
+                            {reg.amount_total 
+                              ? `${(reg.amount_total / 100).toFixed(2)} ${reg.currency?.toUpperCase() || 'EUR'}`
+                              : '-'}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+      <div class="mt-8">
+        <a href="/" class="text-pharagraph-small font-semibold text-white lg:text-base font-creato px-6 py-3 bg-malt hover:bg-camel transition-all duration-400">
+          VOLVER AL INICIO
+        </a>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</Layout>

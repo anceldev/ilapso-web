@@ -11,4 +11,9 @@ export default defineConfig({
   },
 
   adapter: vercel(),
+
+  // Permitir hosts de ngrok y otros para desarrollo
+  server: {
+    allowedHosts: true, // Permite cualquier hostname (útil para ngrok)
+  },
 });

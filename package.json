@@ -6,13 +6,21 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "supabase:start": "supabase start",
+    "supabase:stop": "supabase stop",
+    "supabase:status": "supabase status",
+    "supabase:reset": "supabase db reset",
+    "supabase:logs": "supabase logs"
   },
   "dependencies": {
     "@astrojs/vercel": "^9.0.4",
     "@fontsource-variable/inconsolata": "^5.2.8",
     "@tailwindcss/vite": "^4.1.18",
+    "@supabase/supabase-js": "^2.39.0",
     "astro": "^5.16.6",
+    "resend": "^4.0.0",
+    "stripe": "^17.0.0",
     "tailwindcss": "^4.1.18"
   }
 }

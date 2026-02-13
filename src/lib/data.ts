@@ -57,8 +57,8 @@ export const talleresVelas = [
     price: "100 €",
     capacity: 10,
     type: "velas",
-    register: "https://buy.stripe.com/test_28EbJ21CT1c7g3A4Z92VG00",
-
+    // register: "https://buy.stripe.com/test_28EbJ21CT1c7g3A4Z92VG00",
+    register: "https://www.stripe.com",
   },
   {
     id: "taller-velas-mayo-2026",
@@ -73,7 +73,7 @@ export const talleresVelas = [
     price: "100 €",
     capacity: 10,
     type: "velas",
-    register: "https://www.google.com",
+    register: "https://www.stripe.com",
   },
 ]
 export const talleresPerfumes = [
@@ -90,10 +90,9 @@ export const talleresPerfumes = [
     price: "100 €",
     capacity: 10,
     type: "perfumes",
-    register: "https://www.google.com",
+    register: "https://www.stripe.com",
   },
 ]
-
 export const talleresJabones = [
   {
     id: "taller-jabones-febrero-2026",
@@ -108,7 +107,7 @@ export const talleresJabones = [
     price: "100 €",
     capacity: 10,
     type: "jabones",
-    register: "https://www.google.com",
+    register: "https://www.stripe.com",
   },
 ]
 export const productsTypes = [
@@ -161,6 +160,7 @@ export const productsReplicas = [
       }
     ],
     image: "/images/hand-1.png",
+    buy_url: "https://www.stripe.com",
   },
   {
     id: 2,
@@ -180,6 +180,7 @@ export const productsReplicas = [
       }
     ],
     image: "/images/rep-prod2.webp",
+    buy_url: "https://www.stripe.com",
   },
   {
     id: 3,
@@ -199,6 +200,7 @@ export const productsReplicas = [
       }
     ],
     image: "/images/hand-2.jpg",
+    buy_url: "https://www.stripe.com",
   },
   {
     id: 4,
@@ -213,6 +215,7 @@ export const productsReplicas = [
       },
     ],
     image: "/images/hand-2.jpg",
+    buy_url: "https://www.stripe.com",
   },
   {
     id: 5,
@@ -227,6 +230,7 @@ export const productsReplicas = [
       },
     ],
     image: "/images/rep-prod5.webp",
+    buy_url: "https://www.stripe.com",
   },
   {
     id: 6,
@@ -251,6 +255,7 @@ export const productsReplicas = [
       },
     ],
     image: "/images/rep-prod6.webp",
+    buy_url: "https://www.stripe.com",
   },
   {
     id: 7,
@@ -275,6 +280,7 @@ export const productsReplicas = [
       },
     ],
     image: "/images/hand-2.jpg",
+    buy_url: "https://www.stripe.com",
   },
 ]
 
@@ -302,6 +308,7 @@ export const productsVelas = [
       }
     ],
     image: "/images/product-1.jpg",
+    buy_url: "https://www.stripe.com",
   },
   {
     id: 2,
@@ -326,6 +333,7 @@ export const productsVelas = [
       }
     ],
     image: "/images/product-2.jpg",
+    buy_url: "https://www.stripe.com",
   },
   {
     id: 3,
@@ -350,6 +358,7 @@ export const productsVelas = [
       }
     ],
     image: "/images/product-1.jpg",
+    buy_url: "https://www.stripe.com",
   },
   {
     id: 4,
@@ -364,6 +373,7 @@ export const productsVelas = [
       },
     ],
     image: "/images/product-2.jpg",
+    buy_url: "https://www.stripe.com",
   },
   {
     id: 5,
@@ -378,6 +388,7 @@ export const productsVelas = [
       },
     ],
     image: "/images/product-1.jpg",
+    buy_url: "https://www.stripe.com",
   },
 ]
 
@@ -405,6 +416,7 @@ export const productsPerfumes = [
       }
     ],
     image: "/images/product-3.jpg",
+    buy_url: "https://www.stripe.com",
   },
   {
     id: 2,
@@ -419,6 +431,7 @@ export const productsPerfumes = [
       },
     ],
     image: "/images/product-3.jpg",
+    buy_url: "https://www.stripe.com",
   },
   {
     id: 3,
@@ -433,6 +446,7 @@ export const productsPerfumes = [
       },
     ],
     image: "/images/product-3.jpg",
+    buy_url: "https://www.stripe.com",
   },
   {
     id: 4,
@@ -447,6 +461,7 @@ export const productsPerfumes = [
       },
     ],
     image: "/images/product-3.jpg",
+    buy_url: "https://www.stripe.com",
   },
 ]
 
@@ -474,6 +489,7 @@ export const productsJabones = [
       }
     ],
     image: "/images/product-4.jpg",
+    buy_url: "https://www.stripe.com",
   },
   {
     id: 2,
@@ -488,6 +504,7 @@ export const productsJabones = [
       },
     ],
     image: "/images/product-4.jpg",
+    buy_url: "https://www.stripe.com",
   },
   {
     id: 3,
@@ -507,6 +524,7 @@ export const productsJabones = [
       }
     ],
     image: "/images/product-4.jpg",
+    buy_url: "https://www.stripe.com",
   },
   {
     id: 4,
@@ -526,6 +544,7 @@ export const productsJabones = [
       }
     ],
     image: "/images/product-4.jpg",
+    buy_url: "https://www.stripe.com",
   },
   {
     id: 5,
@@ -540,6 +559,7 @@ export const productsJabones = [
       },
     ],
     image: "/images/product-4.jpg",
+    buy_url: "https://www.stripe.com",
   },
 ]
 

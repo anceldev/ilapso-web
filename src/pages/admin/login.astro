@@ -1,0 +1,119 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import NavBar from "../../components/NavBar.astro";
+import Footer from "../../components/Footer.astro";
+import { signIn, getSession } from "@/lib/auth";
+import { rateLimitLogin } from "@/lib/rate-limit";
+
+export const prerender = false;
+
+// Si ya está autenticado, redirigir al panel
+const session = await getSession();
+if (session) {
+  return Astro.redirect("/admin/inscripciones");
+}
+
+let error: string | null = null;
+let email = "";
+let rateLimitError: string | null = null;
+
+// Manejar login
+if (Astro.request.method === "POST") {
+  // Rate limiting: 5 intentos cada 15 minutos por IP
+  const rateLimit = rateLimitLogin(Astro.request, 5, 15 * 60 * 1000);
+  if (!rateLimit.allowed) {
+    rateLimitError = `Demasiados intentos de inicio de sesión. Intenta de nuevo en ${Math.ceil(rateLimit.retryAfter! / 60)} minutos.`;
+  } else {
+    const formData = await Astro.request.formData();
+    email = formData.get("email")?.toString() || "";
+    const password = formData.get("password")?.toString() || "";
+
+    if (email && password) {
+      // Validar formato de email básico
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        error = "Por favor, ingresa un email válido";
+      } else if (password.length < 6) {
+        error = "La contraseña debe tener al menos 6 caracteres";
+      } else {
+        const result = await signIn(email, password);
+        if (result.error) {
+          // No exponer detalles específicos del error en producción
+          error = import.meta.env.PROD 
+            ? "Credenciales inválidas" 
+            : result.error;
+        } else {
+          // Redirigir al panel después de login exitoso
+          return Astro.redirect("/admin/inscripciones");
+        }
+      }
+    } else {
+      error = "Por favor, completa todos los campos";
+    }
+  }
+}
+---
+
+<Layout title="Login - Administración">
+  <NavBar />
+  <section class="flex flex-col items-center justify-center max-w-[1500px] mx-auto column-gap-4 px-6 lg:px-20 lg:py-28 pb-12 pt-22 gap-y-12 min-h-screen">
+    <div class="flex flex-col items-center justify-center lg:w-1/3 gap-y-6">
+      <h1 class="lg:text-h2 text-h4 font-extralight text-camel leading-[1.2] text-center">
+        ACCESO ADMINISTRACIÓN
+      </h1>
+      
+      {rateLimitError && (
+        <div class="w-full bg-red-200 border border-red-500 text-red-800 px-4 py-3 rounded font-semibold">
+          {rateLimitError}
+        </div>
+      )}
+      
+      {error && (
+        <div class="w-full bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+          {error}
+        </div>
+      )}
+
+      <form method="POST" class="w-full flex flex-col gap-y-4">
+        <div>
+          <label for="email" class="block text-bCoffe mb-2">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={email}
+            required
+            autocomplete="email"
+            class="w-full px-4 py-2 border border-malt bg-bgWhite3 text-bCoffe focus:outline-none focus:border-camel"
+          />
+        </div>
+        
+        <div>
+          <label for="password" class="block text-bCoffe mb-2">Contraseña:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            autocomplete="current-password"
+            class="w-full px-4 py-2 border border-malt bg-bgWhite3 text-bCoffe focus:outline-none focus:border-camel"
+          />
+        </div>
+        
+        <button
+          type="submit"
+          class="text-pharagraph-small font-semibold text-white lg:text-base font-creato px-6 py-3 bg-malt hover:bg-camel transition-all duration-400 mt-4"
+        >
+          INICIAR SESIÓN
+        </button>
+      </form>
+
+      <div class="mt-4">
+        <a href="/" class="text-sm text-bCoffe hover:text-camel transition-all duration-400 underline">
+          Volver al inicio
+        </a>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</Layout>

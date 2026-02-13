@@ -22,3 +22,12 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# data files (inscripciones)
+data/
+
+# Supabase local (solo desarrollo - no necesario en git)
+supabase/
+
+# Documentación (no necesario en git)
+*.md

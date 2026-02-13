@@ -1,0 +1,107 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NavBar from "../components/NavBar.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Política de Devoluciones">
+  <NavBar />
+  <section class="flex flex-col items-center justify-center max-w-[1500px] mx-auto column-gap-4 px-6 lg:px-20 lg:py-28 pb-12 pt-22 gap-y-12">
+    <div class="flex flex-col items-center justify-center lg:w-2/3 gap-y-6">
+      <h1 class="lg:text-h2 text-h4 font-extralight text-camel leading-[1.2] text-center">
+        POLÍTICA DE DEVOLUCIONES
+      </h1>
+      
+      <div class="flex flex-col gap-y-6 text-bCoffe text-base leading-relaxed">
+        <div>
+          <h2 class="text-xl font-semibold text-camel mb-3">Política de Devoluciones y Cancelaciones</h2>
+          <p>
+            En i.lapso, trabajamos con productos artesanales personalizados y talleres con fechas específicas. Esta política se rige por la legislación española de consumo (Real Decreto Legislativo 1/2007, de 16 de noviembre, por el que se aprueba el texto refundido de la Ley General para la Defensa de los Consumidores y Usuarios).
+          </p>
+        </div>
+        
+        <div>
+          <h2 class="text-xl font-semibold text-camel mb-3">Productos Artesanales (Réplicas y Velas Personalizadas)</h2>
+          <p class="mb-3">
+            <strong>Exención del derecho de desistimiento:</strong> Según el artículo 103.m) del Real Decreto Legislativo 1/2007, los productos personalizados o confeccionados según las especificaciones del consumidor están exentos del derecho de desistimiento.
+          </p>
+          <p>
+            Nuestras réplicas de manos y velas personalizadas son obras artesanales únicas creadas específicamente para cada cliente, por lo que <strong>no son elegibles para devolución</strong> una vez iniciado el proceso de creación, salvo defectos de fabricación o incumplimiento de lo acordado.
+          </p>
+        </div>
+        
+        <div>
+          <h2 class="text-xl font-semibold text-camel mb-3">Talleres y Servicios de Ocio</h2>
+          <p class="mb-3">
+            Los talleres son servicios de ocio con fecha y hora específicas. Según la legislación vigente, el derecho de desistimiento no aplica una vez que el servicio ha comenzado con el consentimiento del consumidor.
+          </p>
+          
+          <div class="bg-bgWhite3 p-6 rounded-lg border border-malt mt-4">
+            <h3 class="text-lg font-semibold text-camel mb-3">Política de Cancelación de Talleres</h3>
+            <ul class="list-disc list-inside space-y-2 ml-4">
+              <li><strong>Cancelación con reembolso completo:</strong> Puedes cancelar tu participación hasta <strong>14 días antes</strong> de la fecha del taller y recibirás el reembolso completo.</li>
+              <li><strong>Cancelación con reembolso parcial:</strong> Si cancelas entre 7 y 14 días antes del taller, recibirás el 50% del importe abonado.</li>
+              <li><strong>Cancelación sin reembolso:</strong> Las cancelaciones realizadas con menos de 7 días de antelación no son reembolsables, salvo casos de fuerza mayor debidamente justificados.</li>
+              <li><strong>Cancelación por parte de i.lapso:</strong> Si cancelamos un taller por cualquier motivo, recibirás el reembolso completo del importe abonado.</li>
+            </ul>
+          </div>
+          
+          <p class="mt-4">
+            Para cancelar tu participación en un taller, debes contactarnos por correo electrónico con al menos 14 días de antelación a la fecha del taller.
+          </p>
+        </div>
+        
+        <div>
+          <h2 class="text-xl font-semibold text-camel mb-3">Defectos de Fabricación o Incumplimiento</h2>
+          <p>
+            Si recibes un producto con defectos de fabricación o que no cumple con lo acordado, contáctanos inmediatamente. En estos casos, evaluaremos cada situación de forma individual y, si procede, ofreceremos la reparación, sustitución o reembolso según corresponda, conforme a la garantía legal establecida en la legislación española.
+          </p>
+        </div>
+        
+        <div>
+          <h2 class="text-xl font-semibold text-camel mb-3">Proceso de Cancelación o Reclamación</h2>
+          <p class="mb-3">
+            Para cancelar un taller o realizar una reclamación, por favor contáctanos en <a href="mailto:support@example.com" class="text-camel hover:text-bCoffe underline">support@example.com</a> indicando:
+          </p>
+          <ul class="list-disc list-inside space-y-2 ml-4">
+            <li>Número de pedido o referencia de la compra</li>
+            <li>Fecha del taller (si aplica)</li>
+            <li>Motivo de la cancelación o reclamación</li>
+            <li>Datos de contacto para el reembolso (si procede)</li>
+          </ul>
+        </div>
+        
+        <div>
+          <h2 class="text-xl font-semibold text-camel mb-3">Reembolsos</h2>
+          <p>
+            Una vez aprobada la cancelación o reclamación, procesaremos el reembolso en un plazo máximo de <strong>14 días naturales</strong> desde la confirmación de la cancelación, conforme a la legislación vigente. El reembolso se realizará mediante el mismo método de pago utilizado en la compra original.
+          </p>
+        </div>
+        
+        <div>
+          <h2 class="text-xl font-semibold text-camel mb-3">Información Adicional</h2>
+          <p class="mb-3">
+            Esta política se aplica conforme a la legislación española de consumo. Si tienes alguna duda o necesitas ejercer tus derechos como consumidor, puedes contactarnos o dirigirte a las oficinas de consumo de tu comunidad autónoma.
+          </p>
+          <p>
+            <strong>Última actualización:</strong> {new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </p>
+        </div>
+        
+        <div>
+          <h2 class="text-xl font-semibold text-camel mb-3">Contacto</h2>
+          <p>
+            Si tienes alguna pregunta sobre nuestra política de devoluciones y cancelaciones, no dudes en contactarnos en <a href="mailto:support@example.com" class="text-camel hover:text-bCoffe underline">support@example.com</a>.
+          </p>
+        </div>
+      </div>
+      
+      <div class="mt-8">
+        <a href="/" class="text-pharagraph-small font-semibold text-white lg:text-base font-creato px-6 py-3 bg-malt hover:bg-camel transition-all duration-400">
+          VOLVER AL INICIO
+        </a>
+      </div>
+    </div>
+  </section>
+  <Footer />
+</Layout>

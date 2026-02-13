@@ -1,0 +1,176 @@
+---
+import Footer from "@/components/Footer.astro";
+import NavBar from "@/components/NavBar.astro";
+import Layout from "@/layouts/Layout.astro";
+import Stripe from "stripe";
+
+// Esta página debe renderizarse dinámicamente en cada request
+export const prerender = false;
+
+const session_id = Astro.url.searchParams.get("session_id");
+
+// Si no hay session_id, redirigir a inicio
+if (!session_id) {
+  return Astro.redirect("/");
+}
+
+// Obtener información de la sesión directamente desde Stripe
+let sessionData = null;
+let error = null;
+let errorDetails = null;
+
+const stripeSecretKey = import.meta.env.STRIPE_SECRET_KEY;
+
+if (!stripeSecretKey) {
+  error = "Error de configuración del servidor";
+  errorDetails = "STRIPE_SECRET_KEY no está configurada";
+} else {
+  try {
+    const stripe = new Stripe(stripeSecretKey);
+    
+    // Obtener la sesión de Stripe
+    const session = await stripe.checkout.sessions.retrieve(session_id, {
+      expand: ["line_items", "line_items.data.price.product"],
+    });
+
+    // Extraer información relevante
+    sessionData = {
+      id: session.id,
+      customer_email: session.customer_email,
+      amount_total: session.amount_total,
+      currency: session.currency,
+      payment_status: session.payment_status,
+      metadata: session.metadata || {},
+      line_items: session.line_items?.data || [],
+    };
+  } catch (err: any) {
+    error = "Error al obtener la información de la compra";
+    // No exponer detalles del error en producción
+    errorDetails = import.meta.env.PROD 
+      ? null 
+      : (err.message || "Error desconocido");
+    console.error("Error al obtener sesión de Stripe:", err);
+  }
+}
+
+// Determinar el tipo de compra y la información a mostrar
+let purchaseType: "producto" | "taller" | null = null;
+let purchaseInfo: any = null;
+
+if (sessionData && sessionData.metadata) {
+  purchaseType = (sessionData.metadata.type as "producto" | "taller") || null;
+  purchaseInfo = {
+    name: sessionData.metadata.name || sessionData.metadata.title || "Producto/Taller",
+    id: sessionData.metadata.id || null,
+  };
+}
+
+// Debug: mostrar metadata recibida (solo en desarrollo)
+if (sessionData && import.meta.env.DEV) {
+  console.log("Metadata recibida de Stripe:", sessionData.metadata);
+  console.log("Purchase Type detectado:", purchaseType);
+}
+---
+
+<Layout title="Gracias por tu compra">
+  <NavBar />
+  <section class="flex flex-col items-center justify-center max-w-[1500px] mx-auto column-gap-4 px-6 lg:px-20 lg:py-28 pb-12 pt-22 gap-y-12 min-h-screen">
+    <div class="flex flex-col items-center justify-center lg:w-2/3 gap-y-6">
+      {error ? (
+        <>
+          <h1 class="lg:text-h2 text-h4 font-extralight text-camel leading-[1.2] text-center">
+            ERROR
+          </h1>
+          <p class="text-base text-bCoffe text-center">
+            {error}
+          </p>
+          {errorDetails && (
+            <p class="text-sm text-bCoffe text-center opacity-75 mt-2">
+              Detalles: {errorDetails}
+            </p>
+          )}
+          <p class="text-sm text-bCoffe text-center opacity-75 mt-4">
+            Session ID: {session_id}
+          </p>
+          <a href="/" class="text-pharagraph-small font-semibold text-white lg:text-base font-creato px-6 py-3 bg-malt hover:bg-camel transition-all duration-400 mt-4">
+            VOLVER AL INICIO
+          </a>
+        </>
+      ) : (
+        <>
+          <h1 class="lg:text-h2 text-h4 font-extralight text-camel leading-[1.2] text-center">
+            ¡GRACIAS POR TU COMPRA!
+          </h1>
+          
+          {purchaseInfo && (
+            <div class="flex flex-col items-center gap-y-4 w-full">
+              <p class="text-lg text-bCoffe text-center font-medium">
+                Has comprado: <span class="text-camel font-semibold">{purchaseInfo.name}</span>
+              </p>
+              
+              {purchaseType === "producto" && (
+                <div class="flex flex-col items-center gap-y-4 bg-bgWhite3 p-8 rounded-lg border border-malt max-w-2xl">
+                  <p class="text-base text-bCoffe text-center">
+                    Nos pondremos en contacto contigo pronto para agendar una cita y coordinar los detalles de tu pedido.
+                  </p>
+                  <p class="text-sm text-bCoffe text-center opacity-75">
+                    Revisa tu correo electrónico para más información.
+                  </p>
+                </div>
+              )}
+              
+              {purchaseType === "taller" && (
+                <div class="flex flex-col items-center gap-y-4 bg-bgWhite3 p-8 rounded-lg border border-malt max-w-2xl">
+                  <p class="text-base text-bCoffe text-center">
+                    Te enviaremos un correo electrónico con toda la información del taller, incluyendo fecha, hora, ubicación y detalles importantes.
+                  </p>
+                  <p class="text-sm text-bCoffe text-center opacity-75">
+                    Revisa tu bandeja de entrada en los próximos minutos.
+                  </p>
+                </div>
+              )}
+              
+              {!purchaseType && (
+                <div class="flex flex-col items-center gap-y-4 bg-bgWhite3 p-8 rounded-lg border border-malt max-w-2xl">
+                  <p class="text-base text-bCoffe text-center">
+                    Gracias por tu compra. Te contactaremos pronto con más información.
+                  </p>
+                  <p class="text-sm text-bCoffe text-center opacity-75">
+                    Revisa tu correo electrónico para más detalles.
+                  </p>
+                  {import.meta.env.DEV && (
+                    <p class="text-xs text-bCoffe text-center opacity-50 mt-2">
+                      ⚠️ Debug: No se detectó el tipo de compra. Asegúrate de configurar la metadata "type" en tu Stripe Payment Link.
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+          
+          {!purchaseInfo && (
+            <div class="flex flex-col items-center gap-y-4 bg-bgWhite3 p-8 rounded-lg border border-malt max-w-2xl">
+              <p class="text-base text-bCoffe text-center">
+                Gracias por tu compra. Te contactaremos pronto con más información.
+              </p>
+              <p class="text-sm text-bCoffe text-center opacity-75">
+                Revisa tu correo electrónico para más detalles.
+              </p>
+            </div>
+          )}
+          
+          <div class="flex flex-col items-center gap-y-4 mt-8">
+            <a href="/" class="text-pharagraph-small font-semibold text-white lg:text-base font-creato px-6 py-3 bg-malt hover:bg-camel transition-all duration-400">
+              VOLVER AL INICIO
+            </a>
+            
+            <a href="/politica-devoluciones" class="text-sm text-bCoffe hover:text-camel transition-all duration-400 underline">
+              Política de devoluciones
+            </a>
+          </div>
+        </>
+      )}
+    </div>
+  </section>
+  <Footer />
+</Layout>
