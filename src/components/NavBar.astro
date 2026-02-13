@@ -67,7 +67,7 @@ export const navItems = [
 </div>
 
 <script>
-  (function() {
+  function initMobileMenu() {
     const menuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     const line1 = document.getElementById('hamburger-line-1');
@@ -78,7 +78,19 @@ export const navItems = [
     
     let isOpen = false;
     
-    menuButton.addEventListener('click', () => {
+    // Función para cerrar el menú
+    function closeMenu() {
+      mobileMenu.classList.add('hidden');
+      isOpen = false;
+      line1.style.transform = 'none';
+      line1.style.top = '12px';
+      line2.style.opacity = '1';
+      line3.style.transform = 'none';
+      line3.style.top = '24px';
+    }
+    
+    // Función para abrir/cerrar el menú
+    function toggleMenu() {
       isOpen = !isOpen;
       
       if (isOpen) {
@@ -90,30 +102,43 @@ export const navItems = [
         line3.style.transform = 'rotate(-45deg)';
         line3.style.top = '18px';
       } else {
-        mobileMenu.classList.add('hidden');
-        // Volver a hamburguesa
-        line1.style.transform = 'none';
-        line1.style.top = '12px';
-        line2.style.opacity = '1';
-        line3.style.transform = 'none';
-        line3.style.top = '24px';
+        closeMenu();
       }
-    });
+    }
+    
+    // Remover listeners anteriores si existen (usando AbortController)
+    const controller = new AbortController();
+    
+    menuButton.addEventListener('click', toggleMenu, { signal: controller.signal });
     
     // Cerrar menú al hacer clic en un enlace
     const menuLinks = mobileMenu.querySelectorAll('a');
     menuLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        isOpen = false;
-        line1.style.transform = 'none';
-        line1.style.top = '12px';
-        line2.style.opacity = '1';
-        line3.style.transform = 'none';
-        line3.style.top = '24px';
-      });
+      link.addEventListener('click', closeMenu, { signal: controller.signal });
     });
-  })();
+    
+    // Retornar el controller para poder cancelar los listeners si es necesario
+    return controller;
+  }
+  
+  let currentController: AbortController | null = null;
+  
+  function setupMenu() {
+    // Cancelar listeners anteriores si existen
+    if (currentController) {
+      currentController.abort();
+    }
+    
+    // Crear nuevos listeners
+    currentController = initMobileMenu() || null;
+  }
+  
+  // Inicializar en el load inicial
+  setupMenu();
+  
+  // Re-inicializar después de cada transición de página
+  document.addEventListener('astro:page-load', setupMenu);
+  document.addEventListener('astro:after-swap', setupMenu);
 </script>
 
 
