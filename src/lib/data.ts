@@ -146,8 +146,8 @@ export const productsReplicas = [
   {
     id: 1,
     slug: "1-replica",
-    quantity: "1 réplica",
-    description: "1 pie o mano, con marco artesanal grabado",
+    name: "Réplica",
+    description: "Réplica de pie o mano, con marco artesanal grabado",
     price: [
       {
         id: 1,
@@ -165,7 +165,7 @@ export const productsReplicas = [
   {
     id: 2,
     slug: "2-replicas",
-    quantity: "2 réplicas",
+    name: "2 réplicas",
     description: "2 pies o manos, con marco artesanal grabado",
     price: [
       {
@@ -184,7 +184,7 @@ export const productsReplicas = [
   {
     id: 3,
     slug: "4-replicas",
-    quantity: "4 réplicas",
+    name: "4 réplicas",
     description: "2 pies y 2 manos, con marco artesanal grabado",
     price: [
       {
@@ -203,7 +203,7 @@ export const productsReplicas = [
   {
     id: 4,
     slug: "1-1-replicas",
-    quantity: "1 + 1 réplicas",
+    name: "1 + 1 réplicas",
     description: "1 pie de bebé y 1 mano de adulto, con peana artesanal grabado",
     price: [
       {
@@ -217,7 +217,7 @@ export const productsReplicas = [
   {
     id: 5,
     slug: "2-2-replicas",
-    quantity: "2 + 2 réplicas",
+    name: "2 + 2 réplicas",
     description: "2 pies o manos de bebé y 2 pies o manos de adulto, con peana artesanal grabado",
     price: [
       {
@@ -231,7 +231,7 @@ export const productsReplicas = [
   {
     id: 6,
     slug: "replicas-manos-adultos",
-    quantity: "Réplicas",
+    name: "Réplicas",
     description: "Réplicas de manos de adultos, con peana artesanal grabado",
     price: [
       {
@@ -255,7 +255,7 @@ export const productsReplicas = [
   {
     id: 7,
     slug: "replica-barriga",
-    quantity: "Réplica",
+    name: "Réplica",
     description: "Réplica de barriga, con peana artesanal grabado",
     price: [
       {
@@ -282,7 +282,7 @@ export const productsVelas = [
   {
     id: 1,
     slug: "vela-pequena",
-    quantity: "Vela pequeña",
+    name: "Vela pequeña",
     description: "Vela artesanal de cera vegetal en recipiente de cerámica, 8cm de altura",
     price: [
       {
@@ -306,7 +306,7 @@ export const productsVelas = [
   {
     id: 2,
     slug: "vela-mediana",
-    quantity: "Vela mediana",
+    name: "Vela mediana",
     description: "Vela artesanal de cera vegetal en recipiente de cerámica, 12cm de altura",
     price: [
       {
@@ -330,7 +330,7 @@ export const productsVelas = [
   {
     id: 3,
     slug: "vela-grande",
-    quantity: "Vela grande",
+    name: "Vela grande",
     description: "Vela artesanal de cera vegetal en recipiente de cerámica, 18cm de altura",
     price: [
       {
@@ -354,7 +354,7 @@ export const productsVelas = [
   {
     id: 4,
     slug: "pack-3-velas-pequenas",
-    quantity: "Pack 3 velas pequeñas",
+    name: "Pack 3 velas pequeñas",
     description: "Set de 3 velas pequeñas con aromas combinados, ideal para regalo",
     price: [
       {
@@ -368,7 +368,7 @@ export const productsVelas = [
   {
     id: 5,
     slug: "vela-personalizada",
-    quantity: "Vela personalizada",
+    name: "Vela personalizada",
     description: "Vela artesanal con recipiente personalizado y aroma a elegir",
     price: [
       {
@@ -385,7 +385,7 @@ export const productsPerfumes = [
   {
     id: 1,
     slug: "perfume-solido-individual",
-    quantity: "Perfume sólido individual",
+    name: "Perfume sólido individual",
     description: "Perfume sólido en formato compacto, 10g, con base de cera de abeja y aceites esenciales",
     price: [
       {
@@ -409,7 +409,7 @@ export const productsPerfumes = [
   {
     id: 2,
     slug: "pack-2-perfumes-solidos",
-    quantity: "Pack 2 perfumes sólidos",
+    name: "Pack 2 perfumes sólidos",
     description: "Set de 2 perfumes sólidos con aromas complementarios, ideal para probar diferentes fragancias",
     price: [
       {
@@ -423,7 +423,7 @@ export const productsPerfumes = [
   {
     id: 3,
     slug: "perfume-solido-premium",
-    quantity: "Perfume sólido premium",
+    name: "Perfume sólido premium",
     description: "Perfume sólido de mayor tamaño, 20g, con ingredientes premium y fragancia exclusiva",
     price: [
       {
@@ -437,7 +437,7 @@ export const productsPerfumes = [
   {
     id: 4,
     slug: "perfume-solido-personalizado",
-    quantity: "Perfume sólido personalizado",
+    name: "Perfume sólido personalizado",
     description: "Perfume sólido con fragancia personalizada según tus preferencias",
     price: [
       {
@@ -454,7 +454,7 @@ export const productsJabones = [
   {
     id: 1,
     slug: "jabon-individual",
-    quantity: "Jabón individual",
+    name: "Jabón individual",
     description: "Jabón artesanal de 100g, con aceites vegetales y aceites esenciales naturales",
     price: [
       {
@@ -478,7 +478,7 @@ export const productsJabones = [
   {
     id: 2,
     slug: "pack-3-jabones",
-    quantity: "Pack 3 jabones",
+    name: "Pack 3 jabones",
     description: "Set de 3 jabones artesanales con diferentes aromas, ideal para uso diario",
     price: [
       {
@@ -492,7 +492,7 @@ export const productsJabones = [
   {
     id: 3,
     slug: "jabon-exfoliante",
-    quantity: "Jabón exfoliante",
+    name: "Jabón exfoliante",
     description: "Jabón artesanal con propiedades exfoliantes, 100g, con semillas naturales",
     price: [
       {
@@ -511,7 +511,7 @@ export const productsJabones = [
   {
     id: 4,
     slug: "jabon-hidratante",
-    quantity: "Jabón hidratante",
+    name: "Jabón hidratante",
     description: "Jabón artesanal con propiedades hidratantes intensas, 100g, con aceite de oliva y manteca de karité",
     price: [
       {
@@ -530,7 +530,7 @@ export const productsJabones = [
   {
     id: 5,
     slug: "pack-completo-jabones",
-    quantity: "Pack completo",
+    name: "Pack completo",
     description: "Set completo con 5 jabones artesanales de diferentes tipos y aromas",
     price: [
       {

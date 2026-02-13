@@ -71,13 +71,13 @@ export const redesSociales = [
 <footer class="pt-10 lg:pt-18 pb-6 border-t border-malt">
   <div class="max-w-[1500px] mx-6 lg:mx-[72px]">
     <div class="flex">
-      <div class="flex flex-col lg:flex-row gap-5 lg:gap-x-4 lg:w-3/4">
+      <div class="flex flex-col lg:flex-row gap-5 lg:gap-x-6 lg:w-3/4">
         <div class="lg:w-1/4">
           <h3 class="mb-1.5 lg:text-base text-pharagraph-small text-bCoffe font-medium">I.LAPSO</h3>
           <ul>
             {menu.map((item) => (
-              <a href={item.href} class="hover:text-camel transition-all duration-400">
-                <li class="font-creato lg:text-base text-pharagraph-tiny text-camel">{item.name}</li>
+              <a href={item.href} class="transition-all duration-400">
+                <li class="font-creato lg:text-base text-pharagraph-tiny text-camel hover:text-bCoffe hover:opacity-80 transition-all duration-400">{item.name}</li>
               </a>
             ))}
           </ul>
@@ -87,7 +87,7 @@ export const redesSociales = [
           <ul>
             {products.map((item) => (
               <a href={item.href} class="hover:text-camel transition-all duration-400">
-                <li class="font-creato lg:text-base text-pharagraph-tiny text-camel">{item.name}</li>
+                <li class="font-creato lg:text-base text-pharagraph-tiny text-camel hover:text-bCoffe hover:opacity-80 transition-all duration-400">{item.name}</li>
               </a>
             ))}
           </ul>
@@ -97,7 +97,7 @@ export const redesSociales = [
           <ul>
             {talleres.map((item) => (
               <a href={item.href} class="hover:text-camel transition-all duration-400">
-                <li class="font-creato lg:text-base text-pharagraph-tiny text-camel">{item.name}</li>
+                <li class="font-creato lg:text-base text-pharagraph-tiny text-camel hover:text-bCoffe hover:opacity-80 transition-all duration-400">{item.name}</li>
               </a>
             ))}
           </ul>
@@ -107,7 +107,7 @@ export const redesSociales = [
           <ul class="flex gap-2">
             {redesSociales.map((item) => (
               <a href={item.href} target="_blank">
-                <li class="font-creato lg:text-base text-pharagraph-tiny text-camel">{item.name}</li>
+                <li class="font-creato lg:text-base text-pharagraph-tiny text-camel hover:text-bCoffe hover:opacity-80 transition-all duration-400">{item.name}</li>
               </a>
             ))}
           </ul>

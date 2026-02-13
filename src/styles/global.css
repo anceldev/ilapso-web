@@ -162,6 +162,8 @@
   --color-bgWhite2: #F9F9F3;
   --color-bgWhite3: #FDFBF9;
 
+  --color-cbg-dark2: oklch(0.3245 0.024 82.83);
+
   --text-h1: 5rem;
   --text-h2: 4.2rem;
   --text-h3: 3.15rem;

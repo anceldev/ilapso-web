@@ -3,8 +3,7 @@ import Footer from "@/components/Footer.astro";
 import NavBar from "@/components/NavBar.astro";
 import Layout from "@/layouts/Layout.astro";
 import SectionHeader from "@/components/SectionHeader.astro";
-import ReplicasComponent from "@/components/ReplicasComponent.astro";
-import ProductosComponent from "@/components/ProductosComponent.astro";
+import ProductsComponent from "@/components/ProductsComponent.astro";
 import { getProductoCategoriaInfo, getProductosByCategoria } from "@/lib/data";
 
 export function getStaticPaths() {
@@ -70,10 +69,8 @@ if (categoria === "replicas") {
   <NavBar />
   <SectionHeader content={content} />
   
-  {categoria === "replicas" && <ReplicasComponent categoria={categoria} />}
-  
-  {categoria !== "replicas" && productos.length > 0 && (
-    <ProductosComponent productos={productos} categoria={categoria} />
+  {productos.length > 0 && (
+    <ProductsComponent productos={productos} categoria={categoria} />
   )}
   
   {categoria !== "replicas" && productos.length === 0 && (

@@ -38,9 +38,12 @@ const title = findTaller.title;
           <img src={findTaller.image} alt={findTaller.title} class="w-full h-full object-cover" />
         </picture>
       </div>
-      <div class="lg:px-8 lg:w-1/2 flex flex-col gap-y-2">
-        <h1 class="lg:text-h2 text-h5 font-extralight text-camel leading-[1.2] text-left pr-20">{findTaller.title}</h1>
-        <h5 class="lg:text-base text-pharagraph-tiny text-camel">{findTaller.description}</h5>
+      <div class="lg:px-8 lg:w-1/2 flex flex-col gap-y-2 lg:ml-9 pb-6 lg:pb-0">
+        <div class="flex flex-row gap-x-2 pt-6 border-b border-b-malt pb-4">
+          <a href="./" class="text-paragraph font-creato font-semibold text-cbg-dark2 hover:text-camel transition-all duration-400 underline decoration-2">VOLVER</a>
+        </div>
+        <h1 class="lg:text-h2 text-h5 font-extralight text-camel leading-[1.2] text-left pr-20 pt-8">{findTaller.title}</h1>
+        <h5 class="lg:text-base text-pharagraph-tiny text-camel pr-8">{findTaller.description}</h5>
         <h6 class="lg:text-base text-pharagraph-tiny text-bCoffe font-medium">{`${findTaller.date} - ${findTaller.time} | ${findTaller.location}`}</h6>
         <p class="lg:text-base text-pharagraph-tiny text-bCoffe font-medium font-inconsolata">{findTaller.price}</p>
         

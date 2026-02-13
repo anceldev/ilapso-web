@@ -1,10 +1,11 @@
 ---
 import Footer from "./Footer.astro"
+import { productsReplicas } from "@/lib/data";
 
 interface Product {
   id: number;
   slug: string;
-  quantity: string;
+  name: string;
   description: string;
   price: Array<{
     id: number;
@@ -14,13 +15,13 @@ interface Product {
   image: string;
 }
 
-const { productos, categoria } = Astro.props;
+const { categoria = "replicas", productos } = Astro.props;
+const productosToShow = productos || productsReplicas;
 ---
-
 <section class="flex flex-col items-center justify-center max-w-[1500px] mx-auto h-fit column-gap-4 px-6 lg:px-20 sticky pb-12 lg:pb-24">
   <div class="grid grid-cols-1 lg:grid-cols-3 w-full gap-x-4 gap-y-4">
     {
-      productos.map((product: Product) => (
+      productosToShow.map((product: Product) => (
         <div class="col-span-1 min-h-[400px] relative overflow-hidden">
           <a href={`/productos/${categoria}/${product.slug}`} class="group flex items-start size-full overflow-hidden">
             <img src={product.image} alt={product.description} class="absolute h-full w-full object-cover transition-all duration-400 transform-3d"/>
@@ -35,7 +36,7 @@ const { productos, categoria } = Astro.props;
                 }
               </div>
               <div class="flex flex-col gap-0">
-                <h4 class="text-h5 text-white font-light font-creato leading-tight transition-transform duration-450 lg:group-hover:-translate-y-1">{product.quantity}</h4>
+                <h4 class="text-h5 text-white font-light font-creato leading-tight transition-transform duration-450 lg:group-hover:-translate-y-1">{product.name}</h4>
                 <p class="lg:hidden font-creato text-malt group-hover:block transition-all duration-450 text-pharagraph-small lg:text-base">{product.description}</p>
               </div>
             </div>

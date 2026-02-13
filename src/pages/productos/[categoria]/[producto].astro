@@ -47,7 +47,7 @@ if (!findProducto || !categoriaInfo) {
   return Astro.redirect("/404");
 }
 
-const title = findProducto.quantity;
+const title = findProducto.name;
 ---
 
 <Layout title={`${categoriaInfo.name} - ${title}`}>
@@ -56,11 +56,14 @@ const title = findProducto.quantity;
     <div class="flex flex-col-reverse lg:flex lg:flex-row gap-y-4 lg:h-screen border-t border-t-malt lg:border-t-0 pt-12 lg:pt-0">
       <div class="lg:w-1/2">
         <picture>
-          <img src={findProducto.image} alt={findProducto.quantity} class="w-full h-full object-cover" />
+          <img src={findProducto.image} alt={findProducto.name} class="w-full h-full object-cover" />
         </picture>
       </div>
-      <div class="lg:px-8 lg:w-1/2 flex flex-col gap-y-4">
-        <h1 class="lg:text-h2 text-h5 font-extralight text-camel leading-[1.2] text-left pr-20">{findProducto.quantity}</h1>
+      <div class="lg:px-8 lg:w-1/2 flex flex-col gap-y-4 lg:ml-9 pb-6 lg:pb-0">
+        <div class="flex flex-row gap-x-2 pt-6 border-b border-b-malt pb-4">
+          <a href="./" class="text-paragraph font-creato font-semibold text-cbg-dark2 hover:text-camel transition-all duration-400 underline decoration-2">VOLVER</a>
+        </div>
+        <h1 class="lg:text-h2 text-h5 font-extralight text-camel leading-[1.2] text-left pr-20">{findProducto.name}</h1>
         <h5 class="lg:text-base text-pharagraph-tiny text-camel">{findProducto.description}</h5>
         
         <div class="flex flex-col gap-y-2">
